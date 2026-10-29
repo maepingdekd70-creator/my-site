@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><style>body{margin:0}[hidden]{display:none!important}
+/* Chapter opener artwork: editorial illustrations fill the right-hand negative space without changing story data. */
+.opener:not(.sub){display:grid;grid-template-columns:minmax(0,1.04fr) minmax(290px,.96fr);column-gap:clamp(24px,4vw,60px);align-items:center;}
+.opener:not(.sub)>.chno,.opener:not(.sub)>h2,.opener:not(.sub)>.lead,.opener:not(.sub)>.rule,.opener:not(.sub)>.parts{grid-column:1;}
+.opener-art{grid-column:2;grid-row:1 / span 5;align-self:center;position:relative;margin:0;min-height:390px;aspect-ratio:1.08/1;overflow:hidden;border:0;border-radius:0;background:transparent;box-shadow:none;}
+.opener-art:before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(90deg,var(--cream) 0%,rgba(255,254,245,.62) 16%,transparent 52%),linear-gradient(0deg,var(--cream) 0%,transparent 34%);}
+.opener-art svg{display:none}.opener-art .chapter-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) sepia(.38) contrast(.88);-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.18) 10%,#000 34%,#000 78%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.18) 10%,#000 34%,#000 78%,transparent 100%);}
+.opener-art .art-wash{display:none;}
+.opener-art figcaption{position:absolute;left:12%;right:0;bottom:8px;z-index:2;background:linear-gradient(90deg,transparent,rgba(255,254,245,.74));padding:12px 16px;color:#62584e;border:0;font-size:11px;letter-spacing:.04em;text-align:right}
+.opener-art .art-number{display:none}
+#ch6>.opener:first-child .opener-art{background:transparent;border:0}
+#ch6>.opener:first-child .opener-art figcaption{color:#62584e;border-color:transparent}
+#ch6>.opener:first-child .opener-art .art-number{display:none}
+@media(max-width:860px){.opener:not(.sub){grid-template-columns:1fr;row-gap:18px}.opener-art{grid-column:1;grid-row:auto;min-height:265px;aspect-ratio:16/7;margin:8px 0 4px}.opener:not(.sub)>.rule{margin-top:10px}}
+
+/* Chapter 3: restrained raised/embossed finish on the existing dark panel. */
+#ch3 .stage.dark{box-shadow:inset 1px 1px 0 rgba(255,255,255,.10),inset -2px -3px 8px rgba(0,0,0,.5),0 14px 34px rgba(28,18,14,.22);}
+#ch3 .stage.dark .name .w,#ch3 .stage.dark .name .x{filter:drop-shadow(0 1px 0 rgba(255,245,225,.18)) drop-shadow(0 4px 5px rgba(0,0,0,.45));}
+</style>
+<style id="vintage-ombre-cover">
+/* Minimal addition only: a softly faded archival photograph on the original cover. */
+.hero{position:relative;isolation:isolate;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  top:0;right:calc((1240px - 100vw)/2);bottom:0;left:38%;
+  background-image:
+    linear-gradient(90deg, rgba(255,254,245,1) 0%, rgba(255,254,245,.88) 17%, rgba(255,254,245,.42) 43%, rgba(255,254,245,.16) 100%),
+    linear-gradient(0deg, rgba(224,205,168,.34), rgba(224,205,168,.18)),
+    url("https://upload.wikimedia.org/wikipedia/commons/4/45/Thammasat_University_Massacre_1976-10-06_%28a21%29.jpg");
+  background-size:cover;background-position:center 42%;
+  filter:grayscale(1) sepia(.38) contrast(.88);
+  opacity:.78;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 18%,#000 100%);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 18%,#000 100%);
+}
+@media(max-width:760px){
+  .hero::before{left:12%;right:-24%;opacity:.34;background-position:center;background-image:linear-gradient(90deg,rgba(255,254,245,.95),rgba(255,254,245,.48)),linear-gradient(0deg,rgba(224,205,168,.3),rgba(224,205,168,.2)),url("https://upload.wikimedia.org/wikipedia/commons/4/45/Thammasat_University_Massacre_1976-10-06_%28a21%29.jpg");}
+}
+@media(prefers-reduced-motion:reduce){.hero::before{transition:none}}
+</style>
+</head><body>
+<title>ธรรมศาสตร์และการเมือง</title>
+<meta content="cover" name="claude:viewport-fit-sides"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&amp;family=Chonburi&amp;display=swap" rel="stylesheet"/>
+<style>
+/* Layout: fixed chapter bar; every chapter = opener + sticky graphic (left) with scroll-step cards (right); Thammasat red on cream paper, gold step markers */
+:root{
+  --red:#c30d2f; --red-deep:#9e0a26; --wine:#7d1730;
+  --cream:#fffef5; --paper:#f7f2e5; --line:#e7dfcd;
+  --ink:#1f1916; --ink2:#5d544c; --ink3:#8e8379;
+  --gold:#d4a72c; --gold-lt:#f3d98f; --tan:#cdbba6; --tan-d:#a8937c; --muted:#ddd4c4;
+  --water:#3f87a6; --water2:#bcd0f4; --dot:#2b6a8a; --grass:#b8cf9c; --river:#cfe3e8;
+  --stage:#17120f; --stage-2:#2a221d; --stage-ink:#f4ede1; --stage-mute:#968c81;
+  --d1:#e9a5a0; --d2:#d66a6c; --d3:#bb2f49; --d4:#6e1f2e; --d5:#d98ba0;
+  --f-body:"Sarabun","TH Sarabun New",Tahoma,sans-serif;
+  --f-serif:"Chonburi","Sarabun",Georgia,serif;
+  --hdr:56px; --top:calc(var(--hdr) + env(safe-area-inset-top,0px));
+  --gl:max(16px,env(safe-area-inset-left,0px)); --gr:max(16px,env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--f-body);font-size:18px;line-height:1.75;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:31;background:var(--cream)}
+*{box-sizing:border-box}
+h1,h2,h3,h4{margin:0;text-wrap:balance;line-height:1.3}
+p{margin:0}
+a{color:var(--red)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+svg text{font-family:var(--f-body)}
+.num-tab{font-variant-numeric:tabular-nums}
+
+/* ---------- top bar ---------- */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:30;background:rgba(255,254,245,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.topbar-in{height:var(--hdr);display:flex;align-items:center;gap:16px;padding-left:var(--gl);padding-right:var(--gr);max-width:1400px;margin:0 auto}
+.brand{font-weight:800;color:var(--red);white-space:nowrap;text-decoration:none;font-size:17px}
+.brand span{color:var(--ink);font-weight:400}
+.chips{display:flex;gap:2px;overflow-x:auto;margin-left:auto;scrollbar-width:none;min-width:0}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:var(--ink2);text-decoration:none;font-size:14px;transition:background .25s,color .25s}
+.chips a:hover{background:var(--paper)}
+.chips a.on{background:var(--gold);color:var(--ink)}
+.progress{position:absolute;left:0;bottom:-1px;height:3px;background:var(--red);width:0}
+
+main{padding-top:var(--top)}
+section.chapter{scroll-margin-top:var(--top);border-top:1px solid var(--line);position:relative}
+
+/* ---------- hero ---------- */
+.hero{max-width:1240px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr);padding-block:72px 64px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:end}
+.eyebrow{font-weight:700;color:var(--red);letter-spacing:.04em;font-size:15px}
+.hero h1{font-size:clamp(46px,7.4vw,100px);font-weight:800;line-height:1.18;margin:10px 0 18px}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero .fullname{font-family:var(--f-serif);font-size:clamp(15px,1.6vw,19px);color:var(--ink2);margin-bottom:12px}
+.lead{font-size:20px;color:var(--ink2);max-width:60ch}
+.hero-stat{display:flex;align-items:baseline;gap:14px;border-top:3px solid var(--red);padding-top:12px}
+.hero-stat b{font-size:clamp(80px,11vw,150px);line-height:1;color:var(--red);font-weight:800}
+.hero-stat span{font-size:18px;color:var(--ink2);line-height:1.5}
+.index{max-width:1240px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr);padding-block:0 80px}
+.index h2{font-size:15px;font-weight:700;color:var(--ink2);letter-spacing:.04em;margin-bottom:14px}
+.index ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:0 32px}
+.index li a{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;padding-block:14px;border-top:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.index li a:hover .it{color:var(--red)}
+.index .n{width:34px;height:34px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-weight:800;font-size:14px}
+.index .it{font-weight:700;line-height:1.4;display:block;transition:color .2s}
+.index .vz{font-size:14px;color:var(--ink3)}
+.scrollhint{margin-top:28px;font-size:15px;color:var(--ink3)}
+
+/* ---------- chapter opener ---------- */
+.opener{max-width:1240px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr);padding-block:120px 56px}
+.opener .chno{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--red);font-size:16px}
+.opener .chno i{font-style:normal;width:40px;height:40px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;font-weight:800}
+.opener h2{font-size:clamp(38px,6vw,76px);font-weight:800;margin:14px 0 18px;max-width:18ch}
+.opener h2 em{font-style:normal;color:var(--red)}
+.opener .rule{width:min(560px,100%);height:3px;background:var(--gold);margin-top:28px}
+
+/* ---------- scrollytelling ---------- */
+.scrolly{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(28px,4vw,56px);max-width:1320px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.graphic{position:sticky;top:var(--top);height:calc(100vh - var(--top));display:flex;align-items:center;justify-content:center;padding-block:16px}
+.stage{position:relative;width:100%;height:100%}
+.stage>svg{width:100%;height:100%;display:block}
+.scene>svg{flex:1;min-height:0;width:100%;height:auto;display:block}
+.stage.dark{background:var(--stage);color:var(--stage-ink);border-radius:6px}
+.stage.col{display:flex;flex-direction:column;gap:10px}
+.stage.col>svg{flex:1;min-height:0;height:auto}
+.scene{position:absolute;inset:0;opacity:0;transition:opacity .55s;pointer-events:none;display:flex;flex-direction:column}
+.scene.on{opacity:1;pointer-events:auto}
+.steps{padding-block:7vh 18vh;min-width:0}
+.step{min-height:62vh;display:flex;align-items:center;padding-block:3vh}
+.card{max-width:46ch;opacity:.62;transition:opacity .35s;position:relative;padding:4px 0 4px 18px;border-left:2px solid transparent}
+.step.active .card{opacity:1;border-left-color:var(--red)}
+.tag{display:flex;align-items:center;gap:10px;color:var(--ink2);font-size:16px}
+.tag .n{min-width:36px;height:36px;padding:0 8px;border-radius:18px;background:var(--gold);color:var(--ink);font-weight:800;display:grid;place-items:center;font-size:14px;flex:none}
+.card h3{font-size:clamp(24px,2.4vw,32px);margin:12px 0 4px;font-weight:800}
+.card .date{color:var(--red);font-weight:700;font-size:16px;margin-bottom:10px}
+.card p+p{margin-top:12px}
+.card p{color:var(--ink2)}
+.quote{border-left:3px solid var(--gold);padding-left:14px;font-weight:700;color:var(--ink)!important;margin-top:16px}
+.note{font-size:14px;color:var(--ink3);margin-top:12px}
+.card ul.items{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:0}
+.card ul.items li{display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;padding-block:9px;border-top:1px solid var(--line);font-size:15.5px;line-height:1.55}
+.card ul.items li b{color:var(--red);font-weight:700}
+.card ul.items li strong{display:block;color:var(--ink);font-weight:700}
+.card ul.items li small{display:block;color:var(--ink3);font-size:13px;margin-top:2px}
+.next{max-width:1320px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr);padding-block:28px 72px;display:flex;justify-content:flex-end}
+.next a{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);font-weight:700;border:1.5px solid var(--red);border-radius:999px;padding:10px 20px 10px 22px;transition:background .2s,color .2s}
+.next a:hover{background:var(--red);color:var(--cream)}
+.next a span{color:var(--ink3);font-weight:400}
+.next a:hover span{color:var(--cream)}
+
+/* shared svg text styles */
+.t-date{font-size:30px;font-weight:800;fill:var(--red)}
+.t-lbl{font-size:13px;fill:var(--ink2)}
+.t-sm{font-size:11px;fill:var(--ink3)}
+.t-b{font-weight:700;fill:var(--ink)}
+.grid{stroke:var(--line);stroke-width:1}
+.axis{font-size:12px;fill:var(--ink3)}
+
+/* ---------- ch1 pillar ---------- */
+#c1water{transform-box:fill-box;transform-origin:50% 100%;transition:transform 1.1s cubic-bezier(.4,.1,.2,1)}
+.c1dot{fill:var(--cream);stroke:var(--tan-d);stroke-width:2;transition:fill .4s,stroke .4s}
+.c1dot.on{fill:var(--red);stroke:var(--red)}
+#c1prog{transition:x2 1s;stroke:var(--red);stroke-width:4}
+
+/* ---------- ch2 ---------- */
+.who{margin:auto;width:100%;max-width:640px;padding:8px}
+.who h4{font-size:26px;color:var(--red);font-weight:800;margin-bottom:22px}
+.who-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:end}
+.who .lbl{font-weight:700;color:var(--ink3);font-size:15px;margin-bottom:10px}
+.pill{display:flex;align-items:center;gap:10px;border:1.5px solid var(--red);border-radius:999px;padding:8px 18px;margin-bottom:10px;font-weight:700;color:var(--red);background:#fff9f0;font-size:17px;line-height:1.4}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.pill.soft{border-color:var(--tan);color:var(--ink2)}
+.who .sum{margin-top:18px;font-size:15px;color:var(--ink3)}
+#c2dots circle{fill:var(--dot);opacity:0;transition:opacity .25s}
+.scene.on #c2dots circle{opacity:1}
+#c2dots circle.part{fill-opacity:.4}
+.c2big{font-size:52px;font-weight:800;fill:var(--red)}
+.tree-node rect{fill:#fffaf0;stroke:var(--tan);stroke-width:2}
+.tree-node text{font-size:15px;font-weight:700;fill:var(--ink);text-anchor:middle}
+.tree-root rect{fill:var(--red);stroke:none}
+.tree-root text{fill:var(--cream);font-size:18px}
+.tree-link{stroke:var(--ink);stroke-width:2;fill:none}
+.leaf{font-size:15px;font-weight:700;fill:var(--ink)}
+
+/* ---------- ch3 dark stage ---------- */
+#ch3 .stage.dark{background:linear-gradient(145deg,#211d1b 0%,#141312 58%,#29211f 100%);border:1px solid rgba(224,190,129,.32);box-shadow:inset 1px 1px 0 rgba(255,255,255,.075),inset -2px -3px 8px rgba(0,0,0,.48),0 14px 34px rgba(28,18,14,.22)}
+#ch3 .stage.dark .scene{filter:drop-shadow(0 1px 0 rgba(255,255,255,.035))}
+#ch3 .stage.dark .name .w{color:#f0e5d0;text-shadow:0 1px 0 #fff5e4,0 2px 0 #b8a98e,0 3px 0 #6e6254,0 7px 12px rgba(0,0,0,.5);letter-spacing:.012em}
+#ch3 .stage.dark .name .x{color:#e7d9c2;text-shadow:0 1px 0 #fff0d9,0 2px 0 #b6a187,0 3px 0 #665447,0 7px 12px rgba(0,0,0,.55)}
+#ch3 .stage.dark .name-meta{background:linear-gradient(145deg,rgba(255,246,225,.075),rgba(255,246,225,.018));border:1px solid rgba(221,188,130,.2);border-left:3px solid var(--red);padding:14px 16px;box-shadow:inset 1px 1px 0 rgba(255,255,255,.06),0 5px 14px rgba(0,0,0,.18)}
+#ch3 .stage.dark .dk-node rect{filter:drop-shadow(0 3px 2px rgba(0,0,0,.32))}
+
+.stage.dark .scene{padding:28px}
+.dk-kicker{font-size:13px;color:var(--stage-mute);letter-spacing:.04em}
+.dk-h{font-family:var(--f-serif);font-size:clamp(22px,2.4vw,30px);font-weight:400;color:var(--stage-ink);margin:6px 0 4px;line-height:1.4}
+.dk-sub{font-size:14px;color:var(--stage-mute)}
+.dk-foot{font-size:12.5px;color:var(--stage-mute);margin-top:auto}
+.name{font-family:var(--f-serif);font-size:clamp(36px,5.2vw,68px);line-height:1.32;color:var(--stage-ink);margin:auto 0}
+.name .w{display:block;position:relative;width:max-content;max-height:2em;transition:max-height .7s 1.3s,opacity .6s 1.1s,color .4s}
+.name .x::after{content:"";position:absolute;left:-4px;right:-4px;top:54%;height:.09em;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .6s .2s}
+.cut .name .x{color:#e26a6a;opacity:0;max-height:0}
+.cut .name .x::after{transform:scaleX(1)}
+.name-meta{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:15px;color:var(--stage-mute);border-left:3px solid var(--red);padding-left:12px}
+.name-meta b{color:var(--stage-ink);font-weight:600}
+.meta-full{display:contents}.meta-cut{display:none}.cut .meta-cut{display:contents}.cut .meta-full{display:none}
+.dk svg text{fill:var(--stage-ink)}
+.dk .ax{font-size:12px;fill:var(--stage-mute)!important}
+.dk .gl{stroke:#3a312b}
+.fac{opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s}
+.scene.on .fac{opacity:1;transform:none}
+.dk-node rect{fill:none;stroke:var(--stage-ink);stroke-width:1.5}
+.dk-node text{font-size:15px}
+.dk-root rect{stroke:var(--red);stroke-width:2}
+.strike{stroke:var(--red);stroke-width:3;stroke-dasharray:240;stroke-dashoffset:240;transition:stroke-dashoffset .6s 1.6s}
+.scene.on .strike{stroke-dashoffset:0}
+.lp{fill:none;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:420;transition:stroke-dashoffset 1.6s .2s}
+.scene.on .lp{stroke-dashoffset:0}
+.lpt{opacity:0;transition:opacity .4s}
+.scene.on .lpt{opacity:1}
+.scene.on .lpt.p2{transition-delay:.9s}.scene.on .lpt.p3{transition-delay:1.6s}
+.bb{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);transition:transform 1s}
+.scene.on .bb{transform:scaleY(1)}
+.scene.on .bb.b2{transition-delay:.8s}
+.bbl{opacity:0;transition:opacity .4s}
+.scene.on .bbl{opacity:1;transition-delay:1.2s}
+.scene.on .bbl.late{transition-delay:2s}
+.thr,.lite,.crowd{opacity:0;transition:opacity .6s,transform 1.2s}
+.door-l,.door-r{transform-box:fill-box;transition:transform 1.1s}
+.door-l{transform-origin:0 50%}.door-r{transform-origin:100% 50%}
+.scene.on .thr{opacity:1;transition-delay:.4s}
+.scene.on .door-l,.scene.on .door-r{transform:scaleX(.06);transition-delay:1.3s}
+.scene.on .lite{opacity:1;transition-delay:1.3s}
+.scene.on .crowd{opacity:1;transform:translateY(-46px);transition-delay:2.2s}
+.regbar{transform-box:fill-box;transform-origin:0 50%;transform:scaleX(0);transition:transform 1s}
+.scene.on .regbar{transform:scaleX(1)}
+.scene.on .regbar.r2{transition-delay:.5s}.scene.on .regbar.r3{transition-delay:1s}
+
+/* ---------- ch4 map ---------- */
+.map4 .place{opacity:.4;transition:opacity .5s;cursor:pointer}
+.map4[data-focus="intro"] .place,
+.map4[data-focus="dome"] .p-dome,.map4[data-focus="field"] .p-field,
+.map4[data-focus="lanpho"] .p-lanpho,.map4[data-focus="aud"] .p-aud{opacity:1}
+.map4 .ov{opacity:0;transition:opacity .6s;pointer-events:none}
+.map4[data-focus="intro"] .ov-intro,.map4[data-focus="dome"] .ov-dome,.map4[data-focus="field"] .ov-field,
+.map4[data-focus="lanpho"] .ov-lanpho,.map4[data-focus="aud"] .ov-aud{opacity:1}
+.bound{fill:none;stroke:var(--red);stroke-width:2.5;stroke-dasharray:8 6}
+.route{fill:none;stroke:var(--red);stroke-width:3;stroke-linecap:round;transition:stroke-dashoffset 1s}
+.plabel{font-size:13px;font-weight:700;fill:var(--ink)}
+.pchip{fill:var(--cream);stroke:var(--tan-d)}
+.place:hover .pchip,.place:focus .pchip{stroke:var(--red)}
+.ring{fill:none;stroke:var(--red);animation:ring 2.6s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes ring{0%{opacity:.7;transform:scale(.4)}100%{opacity:0;transform:scale(1.25)}}
+.ring.b{animation-delay:.9s}.ring.c{animation-delay:1.8s}
+.ray{stroke:var(--gold);stroke-width:2.5;stroke-linecap:round}
+.crowd4 circle{fill:var(--red);opacity:.78}
+.word{font-weight:800;fill:var(--red)}
+.map-note{font-size:11px;fill:var(--ink3)}
+
+/* ---------- ch5 ---------- */
+.pt5{opacity:.3;transition:opacity .5s}
+.pt5.on{opacity:1}
+.pt5 .core{fill:var(--red);stroke:var(--cream);stroke-width:3}
+.pt5 .pulse{display:none}
+.pt5.cur .pulse{display:block}
+.r5{fill:none;stroke:var(--red);stroke-width:5;stroke-linecap:round;transition:stroke-dashoffset 1.2s}
+.placard{opacity:0;transition:opacity .6s,transform .6s;transform:translateY(12px)}
+.map5[data-stage="5"] .placard{opacity:1;transform:none}
+.after5{opacity:0;transition:opacity .6s}
+.map5[data-stage="6"] .after5{opacity:1}
+
+/* ---------- ch6 calendar ---------- */
+.cell rect{fill:#f1ebdd;stroke:none;transition:fill .4s,stroke .3s,opacity .4s}
+.cell text{font-size:13px;fill:var(--ink3);text-anchor:middle;pointer-events:none}
+.cell.ev rect{fill:#e8a8a8}
+.cell.ev text{fill:var(--ink);font-weight:700}
+.cell.range rect{fill:url(#hatch)}
+.cell.hl rect{fill:var(--red)}
+.cell.hl text{fill:var(--cream)}
+.cell.last rect{fill:var(--ink)}
+.cell.last text{fill:var(--cream)}
+.cell.hl.last rect{stroke:var(--red);stroke-width:4}
+.cell text.mo{font-size:9.5px;text-anchor:start;fill:var(--red);font-weight:700}.cell.hl text.mo,.cell.last text.mo{fill:var(--cream)}
+.c6count{font-size:52px;font-weight:800;fill:var(--red)}
+
+/* ---------- ch7 explorer ---------- */
+.explore{max-width:1240px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr);padding-block:0 40px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tabs button{font:inherit;font-size:15px;font-weight:700;border:1.5px solid var(--tan);background:var(--cream);color:var(--ink2);border-radius:999px;padding:6px 16px;cursor:pointer;transition:all .2s}
+.tabs button.on{background:var(--red);border-color:var(--red);color:var(--cream)}
+.hscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.hscroll svg{min-width:680px;width:100%;display:block}
+.m7 .row-bg{fill:transparent}
+.m7 .row.on .row-bg{fill:var(--paper)}
+.m7 .row .rlabel{font-size:14px;font-weight:700;fill:var(--ink2)}
+.m7 .row.on .rlabel{fill:var(--red)}
+.m7 .dot{cursor:pointer}
+.m7 .dot circle.m{fill:var(--red);transition:r .2s}
+.m7 .dot.tent circle.m{fill:var(--cream);stroke:var(--red);stroke-width:2;stroke-dasharray:3 2}
+.m7 .dot text{fill:var(--cream);font-size:11px;font-weight:800;text-anchor:middle;pointer-events:none}
+.m7 .dot .sel{fill:none;stroke:var(--gold);stroke-width:3;opacity:0}
+.m7 .dot.on .sel{opacity:1}
+.m7 .row:not(.on) .dot circle.m{opacity:.45}
+.c7grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:32px;margin-top:22px}
+.c7card{border-top:3px solid var(--red);padding-top:14px}
+.c7card .yr{font-size:56px;font-weight:800;color:var(--red);line-height:1.1}
+.c7card .sr{font-weight:700;color:var(--ink2)}
+.c7card .ev{margin-top:14px}
+.c7card .ev b{display:block;color:var(--red)}
+.c7card .ev p{color:var(--ink);margin-top:2px}
+.c7card .ev+.ev{border-top:1px solid var(--line);padding-top:12px}
+.c7list{list-style:none;margin:0;padding:0;max-height:440px;overflow:auto;border-top:1px solid var(--line)}
+.c7list button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:78px minmax(0,1fr);gap:12px;padding:10px 6px;border-bottom:1px solid var(--line);cursor:pointer;font-size:15px;line-height:1.5;color:var(--ink2)}
+.c7list button:hover{background:var(--paper)}
+.c7list button.on{background:#fbecec;color:var(--ink)}
+.c7list button b{color:var(--red)}
+.legend{display:flex;flex-wrap:wrap;gap:18px;font-size:14px;color:var(--ink3);margin-top:10px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--red);vertical-align:-1px;margin-right:6px}
+.legend i.h{background:var(--cream);border:2px dashed var(--red)}
+.summary7{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px 28px;margin-top:22px}
+.summary7 div{border-top:1px solid var(--line);padding-top:8px}
+.summary7 b{font-size:34px;color:var(--red);font-weight:800;line-height:1.2;display:block}
+.summary7 span{font-size:14px;color:var(--ink2)}
+
+/* ---------- bars ch8/9 ---------- */
+.bar rect{fill:var(--muted);transition:fill .35s}
+.bar.hl rect{fill:var(--red)}
+.bar.star rect{stroke:var(--ink3);stroke-width:1.5;stroke-dasharray:4 3}
+.bar.star.hl rect{fill:#c96a7c}
+.bar .val{font-size:15px;font-weight:800;fill:var(--ink3)}
+.bar.hl .val{fill:var(--red)}
+.bar{cursor:pointer}
+.bar:focus{outline:none}.bar:focus rect{stroke:var(--gold);stroke-width:3}
+.c8box{border-top:3px solid var(--red);padding-top:10px;max-height:34%;overflow:auto;flex:none;background:rgba(255,254,245,.68);padding-inline:12px;padding-bottom:8px}
+.c8box h4{font-size:18px;font-weight:800}
+.c8box h4 span{color:var(--red)}
+.c8box ul{margin:6px 0 0;padding-left:18px;font-size:15px;color:var(--ink2);line-height:1.55}
+.chart-title{font-size:15px;font-weight:700;color:var(--ink);flex:none}
+.chart-title small{display:block;font-weight:400;color:var(--ink3);font-size:13px}
+
+/* ---------- sankey ---------- */
+.sk .lk{opacity:.5;transition:opacity .4s}
+.sk .bx rect{fill:#fff;stroke:var(--line);transition:stroke .3s,opacity .4s}
+.sk .bx text{font-size:10.5px;fill:var(--ink);transition:opacity .4s}
+.sk .bx text tspan.c{font-weight:800}
+.sk .nd rect{fill:var(--ink);transition:opacity .4s}
+.sk .nd text{font-size:13px;font-weight:700;fill:var(--ink)}
+.sk .nd text.s{font-size:10.5px;font-weight:400;fill:var(--ink3)}
+.sk .dm text{font-size:13.5px;font-weight:800}
+.sk .dm text.s{font-size:10.5px;font-weight:400;fill:var(--ink3)}
+.sk .dm{cursor:pointer}
+.sk .off{opacity:.12!important}
+.sk.mute .lk{opacity:.18}.sk.mute .nd,.sk.mute .bx,.sk.mute .dm{opacity:.45}
+.cmap{max-width:1240px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr);padding-block:20px 40px}
+.cmap-head{background:var(--wine);color:var(--cream);border-radius:8px;padding:14px 20px;text-align:center;margin-bottom:14px}
+.cmap-head b{display:block;font-size:22px}
+.cmap-head span{font-size:14px;opacity:.85}
+.cmap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:12px}
+.cmap details{border:1px solid var(--line);border-radius:8px;background:#fff;padding:12px 16px;border-left:5px solid var(--dc)}
+.cmap summary{cursor:pointer;list-style:none;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center}
+.cmap summary::-webkit-details-marker{display:none}
+.cmap summary .no{font-weight:800;color:var(--dc);font-size:22px}
+.cmap summary b{display:block;font-size:17px}
+.cmap summary small{color:var(--ink3);font-size:13px}
+.cmap summary .ch{font-size:20px;color:var(--ink3);transition:transform .25s}
+.cmap details[open] .ch{transform:rotate(45deg)}
+.cmap ul{margin:10px 0 0;padding:0;list-style:none;font-size:15px}
+.cmap li{padding:6px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:72px minmax(0,1fr);gap:8px}
+.cmap li b{color:var(--dc)}
+.cmap li small{display:block;color:var(--ink3);font-size:12.5px}
+
+/* ---------- end ---------- */
+.ending{background:var(--red);color:var(--cream)}
+.ending-in{max-width:1240px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr);padding-block:80px 64px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+.ending h2{font-size:clamp(32px,4.4vw,56px);font-weight:800}
+.ending p{opacity:.92;margin-top:14px;max-width:56ch}
+.ending h3{font-size:16px;letter-spacing:.04em;margin-bottom:10px;color:var(--gold-lt)}
+.ending ul{margin:0;padding-left:18px;font-size:15px;line-height:1.7}
+.ending .fine{font-size:13px;opacity:.8;margin-top:22px}
+
+/* ---------- additions v2 ---------- */
+.opener.sub{padding-block:96px 36px}
+.opener.sub h2{font-size:clamp(32px,4.6vw,60px);max-width:20ch}
+.band-dark{background:var(--stage);color:var(--stage-ink);margin-top:40px}
+.band-dark .opener h2{color:var(--stage-ink)}
+.band-dark .opener h2 em{color:#e2534a}
+.band-dark .lead{color:#cfc5b8}
+.band-dark .card p{color:#cfc5b8}
+.band-dark .card h3{color:var(--stage-ink)}
+.band-dark .tag{color:var(--stage-mute)}
+.band-dark .card a{color:#f08a80}
+.band-dark .note{color:var(--stage-mute)}
+.band-dark .steps{padding-bottom:20vh}
+.dkm{fill:var(--stage-mute)}
+#t5 .grp{opacity:.2;transition:opacity .5s}
+#t5[data-st="0"] .g-q,#t5[data-st="1"] .g-ex,#t5[data-st="2"] .g-pm,#t5[data-st="2"] .g-el,#t5[data-st="3"] .g-ex,#t5[data-st="3"] .g-ret,#t5[data-st="4"] .grp{opacity:1}
+#t5[data-st="4"] .g-q{opacity:.35}
+.o6{position:relative;overflow:hidden}
+.o6 .ghost{position:absolute;right:-.04em;bottom:-.28em;font-size:clamp(180px,30vw,420px);font-weight:800;color:#f7e7e3;line-height:1;z-index:-1;pointer-events:none}
+.o6>*{position:relative}
+.parts{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;max-width:760px}
+.parts a{display:block;text-decoration:none;color:var(--ink);border-top:3px solid var(--red);padding-top:8px;font-weight:700}
+.parts b{color:var(--red);margin-right:8px}
+.parts span{display:block;font-weight:400;font-size:14px;color:var(--ink3)}
+.photo{margin:28px 0 0;max-width:620px}
+.photo img{width:100%;display:block;filter:grayscale(1);border:6px solid var(--paper)}
+.photo figcaption{font-size:12.5px;color:var(--ink3);margin-top:6px}
+.respect{margin-top:22px;max-width:620px;background:#f7e7e6;border-left:4px solid var(--red);padding:12px 16px;font-size:15px;color:var(--ink2)}
+.respect b{display:block;color:var(--ink)}
+.steps.vt{position:relative}
+.steps.vt::before{content:"";position:absolute;left:7px;top:12vh;bottom:30vh;width:2px;background:var(--line)}
+.vt .step .card{position:relative;padding-left:34px}
+.vt .step .card::before{content:"";position:absolute;left:1px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--muted);border:3px solid var(--cream);box-sizing:content-box;margin-left:-3px;transition:background .3s,box-shadow .3s}
+.vt .step.active .card::before{background:var(--red);box-shadow:0 0 0 5px rgba(195,13,47,.18)}
+#d6 .grp{transition:opacity .5s}
+#d6[data-f="people"] .g-time,#d6[data-f="people"] .g-storm,#d6[data-f="people"] .g-coup,#d6[data-f="people"] #d6ticks{opacity:.25}
+#d6[data-f="time"] .g-storm,#d6[data-f="time"] .g-coup,#d6[data-f="time"] .g-people,
+#d6[data-f="storm"] .g-coup,#d6[data-f="storm"] .g-people,
+#d6[data-f="coup"] .g-storm,#d6[data-f="coup"] .g-people{opacity:.22}
+.memory{max-width:1240px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr);padding-block:0 32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+.memory-text p{color:var(--ink2);max-width:58ch}
+.memory-text p+p{margin-top:14px}
+.mem-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+.mem-stats div{border-top:3px solid var(--red);padding-top:8px}
+.mem-stats b{font-size:40px;font-weight:800;color:var(--red);line-height:1.1;display:block}
+.mem-stats span{font-size:13.5px;color:var(--ink2);line-height:1.45;display:block}
+.btn{display:inline-block;background:var(--red);color:var(--cream)!important;text-decoration:none;font-weight:700;padding:10px 18px}
+.memory-viz svg{width:100%;display:block;margin-top:8px}
+.ycell rect{fill:#efe8da}
+.ycell.on rect{fill:var(--red)}
+.ycell.first rect{fill:var(--ink)}
+.ycell.fifty rect{stroke:var(--gold);stroke-width:4}
+.ycell text{font-size:11px;fill:var(--ink3);text-anchor:middle}
+.ycell.on text,.ycell.first text{fill:var(--cream);font-weight:700}
+@media (max-width:860px){
+  .band-dark .graphic{background:var(--stage);border-bottom-color:#3a312b}
+  .memory{grid-template-columns:1fr}
+  .opener.sub{padding-block:64px 24px}
+  .mem-stats b{font-size:32px}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+  body{font-size:17px}
+  .hero{grid-template-columns:1fr;gap:28px;padding-block:44px 40px}
+  .opener{padding-block:72px 32px}
+  .scrolly{display:block}
+  .graphic{height:56vh;z-index:5;background:var(--cream);padding-block:8px;border-bottom:1px solid var(--line)}
+  .stage.dark .scene{padding:16px}
+  .steps{padding-block:4vh 40vh;position:relative;z-index:1}
+  .step{min-height:62vh;align-items:flex-start;padding-top:3vh}
+  .card{opacity:1}
+  .card h3{font-size:24px}
+  .c7grid{grid-template-columns:1fr}
+  .ending-in{grid-template-columns:1fr}
+  .who-cols{gap:14px}
+  .pill{font-size:14px;padding:6px 12px;margin-bottom:7px}
+  .who h4{font-size:20px;margin-bottom:10px}
+  .c8box{max-height:30%}
+  .c8box ul{font-size:13.5px}
+  .name{font-size:34px}
+}
+@media (max-width:520px){.brand span{display:none}.who-cols{grid-template-columns:1fr}.who .soft-col{display:flex;flex-wrap:wrap;gap:0 8px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* Narrative rhythm: restrained chapter-specific cues, preserving the original scenes and data. */
+#ch1 .tag .n,#ch5 .tag .n{background:var(--red);color:#fffaf0}
+#ch3 .stage.dark,#ch6 .stage.dark{box-shadow:inset 0 0 0 1px rgba(220,190,135,.22)}
+#ch4 .stage{outline:1px solid rgba(155,48,42,.18);outline-offset:5px}
+#ch5 .step.active .card{border-left-width:3px}
+#ch6 .step.active .card{border-left-color:var(--gold)}
+#ch7 .c7card{padding:16px 18px 18px;background:rgba(255,254,245,.62);border-top-width:2px}
+#ch8 .chart-title{letter-spacing:.015em}
+#ch9 .chart-title{border-left:3px solid var(--gold);padding-left:10px}
+#ch10 .stage{outline:1px solid rgba(155,48,42,.15);outline-offset:5px}
+@media(max-width:760px){
+ .steps{padding-block:4vh 10vh}
+ .step{min-height:48vh;padding-block:2vh}
+ .card{padding-left:12px}
+ .scrolly{gap:22px}
+}
+</style>
+<header class="topbar">
+<div class="topbar-in">
+<a class="brand" href="#top">ธรรมศาสตร์<span>และการเมือง</span></a>
+<nav aria-label="บท" class="chips" id="chips">
+<a href="#ch1" title="733 วัน">1</a><a href="#ch2" title="ตลาดวิชา">2</a><a href="#ch3" title="ชื่อที่ถูกตัด">3</a><a href="#ch4" title="ท่าพระจันทร์ 49 ไร่">4</a><a href="#ch5" title="14 ตุลา">5</a><a href="#ch6" title="6 ตุลา">6</a><a href="#ch7" title="งานรำลึก">7</a><a href="#ch8" title="พื้นที่แสดงความคิดเห็น">8</a><a href="#ch9" title="องค์กรนักศึกษา">9</a><a href="#ch10" title="ห้องเรียนประชาธิปไตย">10</a>
+</nav>
+</div>
+<div class="progress" id="progress"></div>
+</header>
+<main>
+<!-- ======================= HERO ======================= -->
+<section id="top">
+<div class="hero">
+<div>
+<p class="eyebrow">DATA SCROLLYTELLING · 10 ภาพข้อมูล</p>
+<h1>ธรรมศาสตร์<br/>และ<em>การเมือง</em></h1>
+<p class="fullname">มหาวิทยาลัยวิชาธรรมศาสตร์และการเมือง · สถาปนา 27 มิถุนายน พ.ศ. 2477</p>
+<p class="lead">เรื่องราวของมหาวิทยาลัยที่เกิดจากการเปลี่ยนแปลงการปกครอง ถูกตัดคำว่า "การเมือง" ออกจากชื่อ แต่ยังเป็นพื้นที่ของการเรียกร้อง การรำลึก และการเรียนรู้ประชาธิปไตยมาจนถึงวันนี้</p>
+<p class="scrollhint">เลื่อนลงเพื่อเริ่มอ่าน หรือเลือกบทจากหมายเลขด้านบน ↓</p>
+</div>
+<div class="hero-stat"><b class="num-tab">92</b><span>ปี<br/>นับจากวันเปิด "ตลาดวิชา"<br/>พ.ศ. 2477 – 2569</span></div>
+</div>
+<nav aria-label="สารบัญ" class="index">
+<h2>สารบัญ</h2>
+<ol>
+<li><a href="#ch1"><span class="n">1</span><span><span class="it">733 วัน จากระบอบใหม่ ถึงมหาวิทยาลัยของราษฎร</span><span class="vz">ไทม์ไลน์ตามสัดส่วนเวลา + ระดับน้ำ</span></span></a></li>
+<li><a href="#ch2"><span class="n">2</span><span><span class="it">ตลาดวิชา: เปิดประตูให้ประชาชน</span><span class="vz">Dot matrix ผู้สมัคร 7,094 คน</span></span></a></li>
+<li><a href="#ch3"><span class="n">3</span><span><span class="it">ชื่อที่ถูกตัดคำว่า "การเมือง"</span><span class="vz">Line chart + Before–After bar</span></span></a></li>
+<li><a href="#ch4"><span class="n">4</span><span><span class="it">ท่าพระจันทร์ 49 ไร่</span><span class="vz">Illustrated map 4 สถานที่</span></span></a></li>
+<li><a href="#ch5"><span class="n">5</span><span><span class="it">14 ตุลา: เมื่อเสียงประชาชนดังขึ้น</span><span class="vz">Route map + ไทม์ไลน์ 1,088 วัน</span></span></a></li>
+<li><a href="#ch6"><span class="n">6</span><span><span class="it">6 ตุลาคม 2519</span><span class="vz">Calendar heatmap · ไทม์ไลน์รายชั่วโมง · Unit chart</span></span></a></li>
+<li><a href="#ch7"><span class="n">7</span><span><span class="it">งานรำลึกและกิจกรรมของธรรมศาสตร์</span><span class="vz">Dot timeline matrix 2554–2569</span></span></a></li>
+<li><a href="#ch8"><span class="n">8</span><span><span class="it">พื้นที่แสดงความคิดเห็นทางการเมือง</span><span class="vz">Bar chart เจาะรายปี 2561–2569</span></span></a></li>
+<li><a href="#ch9"><span class="n">9</span><span><span class="it">องค์กรนักศึกษากับการสืบทอดอุดมการณ์</span><span class="vz">Bar chart เจาะรายปี 2562–2569</span></span></a></li>
+<li><a href="#ch10"><span class="n">10</span><span><span class="it">ธรรมศาสตร์ในวันนี้: ห้องเรียนประชาธิปไตย</span><span class="vz">Sankey / Alluvial 28 รายวิชา</span></span></a></li>
+</ol>
+</nav>
+</section>
+<!-- ======================= CH1 ======================= -->
+<section class="chapter" id="ch1">
+<div class="opener">
+<p class="chno"><i>1</i>ที่มาของการก่อตั้ง มธก.</p>
+<h2><em>733 วัน</em> จากระบอบใหม่ ถึงมหาวิทยาลัยของราษฎร</h2>
+<p class="lead">มหาวิทยาลัยวิชาธรรมศาสตร์และการเมืองเปิดหลังการเปลี่ยนแปลงการปกครองสองปีกับสามวัน เวลาเกือบทั้งหมดหมดไปกับช่วงเตรียมการ เมื่อกฎหมายออกแล้ว ใช้เวลาเพียงสามเดือนเศษก็เปิดประตูตลาดวิชาได้</p>
+<figure aria-label="ภาพประกอบ: เอกสารการก่อตั้ง" class="opener-art"><span class="art-number">ARCHIVE NOTE · 01</span><img alt="ภาพบรรยากาศการเมืองในยุค 2510" class="chapter-photo" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Sanam_Luang_1974.jpg"/><figcaption>ภาพถ่ายจากคลังภาพ · Wikimedia Commons</figcaption></figure>
+<div class="rule"></div>
+</div>
+<div class="scrolly">
+<div class="graphic"><div class="stage">
+<svg aria-label="เสาอาคารที่ระดับน้ำสูงขึ้นตามความคืบหน้าของการก่อตั้งมหาวิทยาลัย" role="img" viewbox="0 0 360 540">
+<defs><lineargradient id="gWater" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3f87a6"></stop><stop offset="1" stop-color="#bcd0f4"></stop></lineargradient></defs>
+<text class="t-date" id="c1date" x="20" y="40">24 มิ.ย. 2475</text>
+<polygon fill="#a1052f" points="56,128 180,64 304,128"></polygon>
+<rect fill="#cdbba6" height="54" width="216" x="72" y="128"></rect>
+<rect fill="#fffef5" height="9" width="192" x="84" y="138"></rect>
+<rect fill="#fffef5" height="15" width="90" x="84" y="155"></rect><rect fill="#fffef5" height="15" width="90" x="186" y="155"></rect>
+<rect fill="#cdbba6" height="16" rx="6" stroke="#a8937c" stroke-width="2" width="232" x="64" y="182"></rect>
+<rect fill="#fffaf0" height="232" stroke="#cdbba6" stroke-width="2" width="196" x="82" y="198"></rect>
+<rect fill="url(#gWater)" height="230" id="c1water" width="194" x="83" y="199"></rect>
+<rect fill="#cdbba6" height="16" rx="6" stroke="#a8937c" stroke-width="2" width="232" x="64" y="430"></rect>
+<text class="t-lbl" id="c1lvl" style="font-size:15px" text-anchor="middle" x="180" y="474">ระดับน้ำ 10%</text>
+<g id="c1tl">
+<line stroke="#ece4d4" stroke-width="4" x1="30" x2="330" y1="510" y2="510"></line>
+<line id="c1prog" x1="30" x2="30" y1="510" y2="510"></line>
+<text class="t-sm" text-anchor="start" x="30" y="533">24 มิ.ย. 2475</text>
+<text class="t-sm" text-anchor="end" x="330" y="533">27 มิ.ย. 2477</text>
+<text class="t-b" id="c1day" style="font-size:13px" text-anchor="start" x="30" y="496">วันที่ 0</text>
+</g>
+</svg>
+</div></div>
+<div class="steps">
+<div class="step"><div class="card">
+<div class="tag"><span class="n">1</span>จุดเริ่มต้นระบอบใหม่</div>
+<h3>ประเทศเปลี่ยนระบอบ แต่ประชาชนยังไม่พร้อม</h3>
+<p class="date">24 มิถุนายน พ.ศ. 2475</p>
+<p>คณะราษฎรเปลี่ยนแปลงการปกครองจากระบอบสมบูรณาญาสิทธิราชย์มาเป็นระบอบประชาธิปไตย แต่การเปลี่ยนระบอบเป็นเพียงจุดเริ่มต้น ดร.ปรีดี พนมยงค์ มองว่าประชาธิปไตยจะเกิดขึ้นจริงได้ก็ต่อเมื่อประชาชนมีความรู้ทางการเมืองและการปกครอง</p>
+<p class="quote">"ประชาธิปไตยจะเกิดขึ้นได้ ประชาชนต้องมีความรู้ทางการเมืองและการปกครอง"</p>
+</div></div>
+<div class="step"><div class="card">
+<div class="tag"><span class="n">2</span>การร่างและตรากฎหมายจัดตั้ง</div>
+<h3>ความคิดเปลี่ยนเป็นกฎหมาย</h3>
+<p class="date">17 มีนาคม พ.ศ. 2476</p>
+<p>คำตอบของ ดร.ปรีดี คือการตั้งสถานศึกษาที่เปิดกว้างสำหรับประชาชน ท่านเสนอแนวคิดนี้ต่อรัฐบาล และร่างพระราชบัญญัติมหาวิทยาลัยวิชาธรรมศาสตร์และการเมือง พ.ศ. 2476 เสนอต่อสภาผู้แทนราษฎร จนตราเป็นกฎหมายอย่างเป็นทางการ</p>
+<p class="quote">รวมเวลาตั้งแต่วันเปลี่ยนแปลงการปกครองราว 631 วัน</p>
+<p class="note">ปฏิทินไทยสมัยนั้นขึ้นปีใหม่วันที่ 1 เมษายน มีนาคม 2476 จึงอยู่ถัดจากธันวาคม 2476</p>
+</div></div>
+<div class="step"><div class="card">
+<div class="tag"><span class="n">3</span>แต่งตั้งผู้บริหารสูงสุดคนแรก</div>
+<h3>มหาวิทยาลัยได้ผู้นำ</h3>
+<p class="date">11 เมษายน พ.ศ. 2477</p>
+<p>หลังกฎหมายประกาศใช้เพียง 25 วัน ดร.ปรีดี ได้รับแต่งตั้งเป็น "ผู้ประศาสน์การ" คนแรกของมหาวิทยาลัยวิชาธรรมศาสตร์และการเมือง (มธก.) บทบาทของท่านเปลี่ยนจากผู้คิดและผู้ร่างกฎหมาย มาเป็นผู้ที่ต้องทำให้มหาวิทยาลัยเกิดขึ้นจริง</p>
+<p class="quote">ห่างจากวันออกกฎหมายเพียง 25 วัน</p>
+</div></div>
+<div class="step"><div class="card">
+<div class="tag"><span class="n">4</span>วันสถาปนา มธก.</div>
+<h3>ประตู "ตลาดวิชา" เปิดออก</h3>
+<p class="date">27 มิถุนายน พ.ศ. 2477</p>
+<p>มหาวิทยาลัยเปิดทำการวันแรก ห่างจากวันออกกฎหมาย 102 วัน และห่างจากวันครบรอบสองปีของการเปลี่ยนแปลงการปกครองเพียง 3 วัน ในพิธีเปิด ดร.ปรีดี กล่าวสุนทรพจน์รายงานต่อผู้สำเร็จราชการแทนพระองค์ว่า</p>
+<p class="quote">"...มหาวิทยาลัยย่อมอุปมาประดุจบ่อน้ำบำบัดความกระหายของราษฎร..."</p>
+<p>บ่อน้ำในภาพจึงเต็มในวันนี้ และมหาวิทยาลัยแห่งนี้ได้ชื่อว่า "ตลาดวิชา"</p>
+</div></div>
+</div>
+</div>
+<div class="next"><a href="#ch2">บทที่ 2 <span>ตลาดวิชา</span> →</a></div>
+</section>
+<!-- ======================= CH2 ======================= -->
+<section class="chapter" id="ch2">
+<div class="opener">
+<p class="chno"><i>2</i>ธรรมศาสตร์ตอนเปิดปีแรก</p>
+<h2>ตลาดวิชา: <em>เปิดประตู</em>ให้ประชาชน</h2>
+<p class="lead">มหาวิทยาลัยวิชาธรรมศาสตร์และการเมืองเป็นตลาดวิชาและเป็นมหาวิทยาลัยเปิดแห่งแรกของประเทศไทย ปีแรกมีผู้สมัครถึง 7,094 คน</p>
+<figure aria-label="ภาพประกอบ: ตลาดวิชา" class="opener-art"><span class="art-number">ARCHIVE NOTE · 02</span><img alt="ภาพเหตุการณ์จากคลังภาพประวัติศาสตร์" class="chapter-photo" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Phap_Mueang_Thai_(1943,_p_070).jpg"/><figcaption>ภาพถ่ายจากคลังภาพ · Wikimedia Commons</figcaption></figure>
+<div class="rule"></div>
+</div>
+<div class="scrolly">
+<div class="graphic"><div class="stage" id="c2stage">
+<div class="scene on" data-s="who"><div class="who">
+<h4>ใครเข้าเรียนได้บ้าง</h4>
+<div class="who-cols">
+<div class="soft-col"><p class="lbl" style="width:100%">สายการศึกษา</p><span class="pill soft">ผู้เคยเรียนโรงเรียนกฎหมาย</span><span class="pill soft">ผู้สำเร็จมัธยมศึกษา</span></div>
+<div><p class="lbl">เปิดกว้างถึงคนทำงาน</p><span class="pill">ข้าราชการ</span><span class="pill">สมาชิกสภาผู้แทนฯ</span><span class="pill">ผู้แทนตำบล</span><span class="pill">ครู</span><span class="pill">ทนายความ</span></div>
+</div>
+<p class="sum">2 เส้นทางการศึกษา + 5 กลุ่มคนทำงาน</p>
+</div></div>
+<div class="scene" data-s="dots">
+<svg aria-label="จุด 710 จุด แต่ละจุดแทนผู้สมัคร 10 คน" role="img" viewbox="0 0 600 560">
+<text class="c2big num-tab" x="18" y="56">7,094 คน</text>
+<g id="c2dots" transform="translate(0,78)"></g>
+<text class="t-lbl" x="18" y="550">1 จุด = ผู้สมัคร 10 คน · จุดสุดท้ายสีจาง = 4 คน</text>
+</svg>
+</div>
+<div class="scene" data-s="tree">
+<svg aria-label="หลักสูตร 2 แขนงของ มธก. 2477" role="img" viewbox="0 0 600 420">
+<text style="font-size:30px;font-weight:800;fill:#c30d2f" x="10" y="40">หลักสูตร 2 แขนง</text>
+<path class="tree-link" d="M120,240 L200,160"></path><path class="tree-link" d="M120,262 L200,330"></path>
+<path class="tree-link" d="M386,140 L440,104"></path><path class="tree-link" d="M386,152 L440,152"></path><path class="tree-link" d="M386,164 L440,200"></path><path class="tree-link" d="M386,176 L440,246"></path>
+<g class="tree-node tree-root"><rect height="50" rx="10" width="110" x="14" y="226"></rect><text x="69" y="258">มธก. 2477</text></g>
+<g class="tree-node"><rect height="60" rx="16" width="186" x="200" y="130"></rect><text x="293" y="156">ธรรมศาสตรบัณฑิต</text><text style="font-weight:400;font-size:13px" x="293" y="178">(ธ.บ.)</text></g>
+<g class="tree-node"><rect height="60" rx="16" width="186" x="200" y="302"></rect><text x="293" y="328">ประกาศนียบัตร</text><text x="293" y="349">การบัญชี</text></g>
+<text class="leaf" x="448" y="100">กฎหมาย <tspan style="font-weight:400;fill:#c30d2f">(วิชาหลัก)</tspan></text>
+<text class="leaf" x="448" y="157">รัฐศาสตร์</text>
+<text class="leaf" x="448" y="205">เศรษฐศาสตร์</text>
+<text class="leaf" x="448" y="251">การทูต</text>
+</svg>
+</div>
+</div></div>
+<div class="steps">
+<div class="step" data-scene="who"><div class="card">
+<div class="tag"><span class="n">2.1</span>ประตูเปิด</div>
+<h3>ไม่ต้องเป็นนักเรียนสายตรง ก็มาเรียนได้</h3>
+<p>นอกจากผู้ที่เคยศึกษาในโรงเรียนกฎหมายและผู้สำเร็จประโยคมัธยมศึกษาแล้ว มธก. ยังเปิดกว้างให้ข้าราชการ สมาชิกสภาผู้แทนราษฎร ผู้แทนตำบล ครู และทนายความ เข้ามาเรียนได้ด้วย</p>
+<p>ความรู้ทางกฎหมายและการเมืองจึงไม่ได้จำกัดอยู่เฉพาะผู้ที่เดินตามเส้นทางการศึกษาแบบเดิม แต่ส่งต่อไปถึงคนทำงานที่อยู่ใกล้ชิดกับประชาชนและการปกครองโดยตรง</p>
+</div></div>
+<div class="step" data-scene="dots"><div class="card">
+<div class="tag"><span class="n">2.2</span>ผู้คนหลั่งไหล</div>
+<h3>ปีแรกคนสมัคร 7,094 คน</h3>
+<p>เมื่อประตูเปิดกว้าง ผู้คนก็ตอบรับอย่างล้นหลาม ตัวเลขนี้สะท้อนว่าความกระหายใคร่รู้เรื่องการเมืองและการปกครองในสังคมไทยหลังการเปลี่ยนแปลงการปกครองมีอยู่จริง และบ่อน้ำที่ขุดขึ้นก็มาถึงในเวลาที่ผู้คนต้องการพอดี</p>
+</div></div>
+<div class="step" data-scene="tree"><div class="card">
+<div class="tag"><span class="n">2.3</span>สองเส้นทาง</div>
+<h3>มหาลัยกฎหมาย ที่ไม่ได้เรียนแค่กฎหมาย</h3>
+<p>แขนงหลักคือหลักสูตรธรรมศาสตรบัณฑิต ซึ่งสอนวิชากฎหมายเป็นแกนกลาง แต่สอนรัฐศาสตร์ เศรษฐศาสตร์ และการทูตควบคู่ไปด้วย อีกแขนงหนึ่งคือหลักสูตรประกาศนียบัตรการบัญชี</p>
+<p>การออกแบบเช่นนี้แสดงว่ามหาวิทยาลัยไม่ได้ต้องการผลิตเพียงนักกฎหมาย แต่ต้องการสร้างพลเมืองที่เข้าใจการปกครอง เศรษฐกิจ และความสัมพันธ์กับต่างประเทศ ซึ่งเป็นความรู้ที่ระบอบประชาธิปไตยใหม่ต้องการ</p>
+</div></div>
+</div>
+</div>
+<div class="next"><a href="#ch3">บทที่ 3 <span>ชื่อที่ถูกตัด</span> →</a></div>
+</section>
+<!-- ======================= CH3 ======================= -->
+<section class="chapter" id="ch3">
+<div class="opener">
+<p class="chno"><i>3</i>เมื่อชื่อเปลี่ยน โครงสร้างเปลี่ยน และประตูก็เปลี่ยนไป</p>
+<h2>ชื่อที่ถูกตัดคำว่า <em>"การเมือง"</em></h2>
+<p class="lead">รัฐประหาร 8 พฤศจิกายน 2490 ส่งผลถึงมหาวิทยาลัยโดยตรง ทั้งชื่อ ตำแหน่ง หลักสูตร และในที่สุดคือวิธีรับคนเข้าเรียน</p>
+<figure aria-label="ภาพประกอบ: ชื่อที่ถูกตัด" class="opener-art"><span class="art-number">ARCHIVE NOTE · 03</span><img alt="ภาพอาคารมหาวิทยาลัยธรรมศาสตร์" class="chapter-photo" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Dome_of_Thammasat_University.jpg"/><figcaption>ภาพถ่ายจากคลังภาพ · Wikimedia Commons</figcaption></figure>
+<div class="rule"></div>
+</div>
+<div class="scrolly">
+<div class="graphic"><div class="stage dark dk" id="c3stage">
+<div class="scene on" data-s="name">
+<p class="dk-kicker">ชื่อมหาวิทยาลัย</p>
+<div class="name"><span class="w">มหาวิทยาลัย</span><span class="w x">วิชา</span><span class="w">ธรรมศาสตร์</span><span class="w x">และการเมือง</span></div>
+<div class="name-meta">
+<span class="meta-full"><span>พ.ศ. 2477</span><b>มธก. · ผู้บริหารคือ "ผู้ประศาสน์การ"</b></span>
+<span class="meta-cut"><span>8 พ.ย. 2490</span><b>รัฐประหาร → "มหาวิทยาลัยธรรมศาสตร์" (มธ.)</b><span>ตำแหน่ง</span><b>ผู้ประศาสน์การ → อธิการบดี</b></span>
+</div>
+</div>
+<div class="scene" data-s="tree">
+<p class="dk-kicker">เมื่อชื่อเปลี่ยน โครงสร้างเปลี่ยน</p>
+<h4 class="dk-h">จากหลักสูตรเดียว สู่หลายสาขา</h4>
+<svg aria-label="ธรรมศาสตรบัณฑิตแตกออกเป็น 5 สาขา" role="img" viewbox="0 0 520 330">
+<g class="dk-node dk-root"><rect height="44" rx="4" width="200" x="10" y="10"></rect><text text-anchor="middle" x="110" y="38">ธรรมศาสตรบัณฑิต</text></g>
+<line class="strike" x1="14" x2="206" y1="32" y2="32"></line>
+<text style="fill:#e26a6a;font-size:13px" x="222" y="38">ยกเลิก</text>
+<path d="M40,54 V292" fill="none" stroke="#968c81"></path>
+<g class="fac" style="transition-delay:.2s"><path d="M40,92 H70" stroke="#968c81"></path><g class="dk-node"><rect height="36" rx="3" width="180" x="70" y="74"></rect><text x="84" y="98">นิติศาสตร์</text></g></g>
+<g class="fac" style="transition-delay:.45s"><path d="M40,142 H70" stroke="#968c81"></path><g class="dk-node"><rect height="36" rx="3" width="180" x="70" y="124"></rect><text x="84" y="148">รัฐศาสตร์</text></g></g>
+<g class="fac" style="transition-delay:.7s"><path d="M40,192 H70" stroke="#968c81"></path><g class="dk-node"><rect height="36" rx="3" width="180" x="70" y="174"></rect><text x="84" y="198">เศรษฐศาสตร์</text></g></g>
+<g class="fac" style="transition-delay:.95s"><path d="M40,242 H70" stroke="#968c81"></path><g class="dk-node"><rect height="36" rx="3" width="250" x="70" y="224"></rect><text x="84" y="248">พาณิชยศาสตร์และการบัญชี</text></g></g>
+<g class="fac" style="transition-delay:1.2s"><path d="M40,292 H70" stroke="#968c81"></path><g class="dk-node"><rect height="36" rx="3" width="180" x="70" y="274"></rect><text x="84" y="298">สังคมสงเคราะห์</text></g></g>
+</svg>
+<p class="dk-foot">ก่อน: ปริญญาบัตรกลาง (ธรรมศาสตรบัณฑิต) · หลัง: ปริญญาบัตรตามสาขาวิชา</p>
+</div>
+<div class="scene" data-s="reg">
+<p class="dk-kicker">ขนาดของตลาดวิชา</p>
+<h4 class="dk-h">คนในทะเบียนเพิ่มขึ้นหลายเท่า</h4>
+<svg aria-label="เทียบจำนวนผู้สมัครปีแรกกับนักศึกษาในทะเบียน" role="img" viewbox="0 0 520 320">
+<defs><pattern height="8" id="hatchD" patterntransform="rotate(45)" patternunits="userSpaceOnUse" width="8"><rect fill="#5a1220" height="8" width="8"></rect><line stroke="#c30d2f" stroke-width="4" x1="0" x2="0" y1="0" y2="8"></line></pattern></defs>
+<g class="ax"><line class="gl" x1="20" x2="20" y1="40" y2="290"></line><line class="gl" x1="230" x2="230" y1="40" y2="290"></line><line class="gl" x1="440" x2="440" y1="40" y2="290"></line>
+<text class="ax" text-anchor="middle" x="20" y="310">0</text><text class="ax" text-anchor="middle" x="230" y="310">10,000</text><text class="ax" text-anchor="middle" x="440" y="310">20,000 คน</text></g>
+<text style="font-size:14px" x="20" y="62">ผู้สมัครปีแรก พ.ศ. 2477</text>
+<rect class="regbar" fill="#d4a72c" height="34" width="149" x="20" y="72"></rect><text style="font-size:18px;font-weight:800" x="178" y="96">7,094</text>
+<text style="font-size:14px" x="20" y="146">นักศึกษาที่มีชื่อในทะเบียน พ.ศ. 2490</text>
+<rect class="regbar r2" fill="#c30d2f" height="34" width="345" x="20" y="156"></rect><text style="font-size:18px;font-weight:800" x="374" y="180">16,429</text>
+<text style="font-size:14px" x="20" y="230">ช่วง พ.ศ. 2490–2500 (ช่วงต่ำสุด–สูงสุด)</text>
+<rect class="regbar r3" fill="url(#hatchD)" height="34" width="168" x="272" y="240"></rect><text style="font-size:16px;font-weight:800" text-anchor="end" x="262" y="264">12,000–20,000</text>
+</svg>
+<p class="dk-foot">ผู้สมัคร (2477) กับนักศึกษาในทะเบียน (2490) เป็นคนละตัวชี้วัด ใช้เทียบขนาดเท่านั้น · ที่มา: WAY Magazine</p>
+</div>
+<div class="scene" data-s="line">
+<p class="dk-kicker">ผู้สมัครในยุคตลาดวิชา</p>
+<h4 class="dk-h">ไม่มีสอบคัดเลือก ค่าเล่าเรียนไม่สูง ผู้สมัครเพิ่มขึ้นทุกปี</h4>
+<svg aria-label="ผู้สมัคร 2500 ถึง 2502" role="img" viewbox="0 0 520 330">
+<g><line class="gl" x1="50" x2="500" y1="290" y2="290"></line><line class="gl" x1="50" x2="500" y1="220" y2="220"></line><line class="gl" x1="50" x2="500" y1="150" y2="150"></line><line class="gl" x1="50" x2="500" y1="80" y2="80"></line>
+<text class="ax" text-anchor="end" x="42" y="294">0</text><text class="ax" text-anchor="end" x="42" y="224">2,000</text><text class="ax" text-anchor="end" x="42" y="154">4,000</text><text class="ax" text-anchor="end" x="42" y="84">6,000</text>
+<text class="ax" text-anchor="middle" x="110" y="314">2500</text><text class="ax" text-anchor="middle" x="275" y="314">2501</text><text class="ax" text-anchor="middle" x="440" y="314">2502</text></g>
+<path class="lp" d="M110,137 L275,101.4 L440,45.8" stroke="url(#gLine)"></path>
+<defs><lineargradient id="gLine" x1="0" x2="1"><stop offset="0" stop-color="#d4a72c"></stop><stop offset="1" stop-color="#e2534a"></stop></lineargradient></defs>
+<g class="lpt"><circle cx="110" cy="137" fill="#d4a72c" r="6"></circle><text style="font-size:18px;font-weight:800" text-anchor="middle" x="110" y="122">4,372</text></g>
+<g class="lpt p2"><circle cx="275" cy="101.4" fill="#e0894a" r="6"></circle><text style="font-size:18px;font-weight:800" text-anchor="middle" x="275" y="86">5,389</text></g>
+<g class="lpt p3"><circle cx="440" cy="45.8" fill="#e2534a" r="9"></circle><text style="font-size:24px;font-weight:800;fill:#e2534a!important" text-anchor="middle" x="440" y="28">6,976</text></g>
+</svg>
+<p class="dk-foot">ผู้สมัครเข้าเรียน (คน) · พ.ศ. 2500–2502</p>
+</div>
+<div class="scene" data-s="door">
+<p class="dk-kicker">พ.ศ. 2503 · ยกเลิกตลาดวิชา สู่ระบบสอบเข้า</p>
+<h4 class="dk-h">ไม่ต้องชนะใคร แค่ผ่านเกณฑ์</h4>
+<svg aria-label="ประตูเปิดเมื่อคะแนนเกิน 50 เปอร์เซ็นต์" role="img" viewbox="0 0 400 400">
+<defs><clippath id="arch"><path d="M126,360 L126,170 A74,74 0 0 1 274,170 L274,360 Z"></path></clippath></defs>
+<rect fill="#221b17" height="360" width="400" x="0" y="0"></rect>
+<path d="M108,360 L108,170 A92,92 0 0 1 292,170 L292,360 Z" fill="#3a302a"></path>
+<g clip-path="url(#arch)">
+<rect class="lite" fill="#f3d98f" height="270" width="148" x="126" y="90"></rect>
+<path class="lite" d="M170,360 L170,250 A30,30 0 0 1 230,250 L230,360 Z" fill="#fff5d6"></path>
+<rect class="door-l" fill="#4a3c33" height="270" stroke="#2a221d" width="74" x="126" y="90"></rect>
+<rect class="door-r" fill="#4a3c33" height="270" stroke="#2a221d" width="74" x="200" y="90"></rect>
+</g>
+<rect fill="#3a302a" height="40" width="400" x="0" y="360"></rect>
+<g class="thr"><line stroke="#c30d2f" stroke-width="3" x1="40" x2="360" y1="330" y2="330"></line><text style="font-size:22px;font-weight:800;fill:#e2534a!important" x="44" y="318">50%</text><text style="font-size:12px;fill:#c9bfb2!important" text-anchor="end" x="356" y="318">ได้คะแนนเกิน = มีสิทธิ์เข้าศึกษา</text></g>
+<g class="crowd" fill="#0d0a08">
+<circle cx="150" cy="356" r="6"></circle><rect height="24" rx="4" width="12" x="144" y="363"></rect>
+<circle cx="178" cy="352" r="6"></circle><rect height="26" rx="4" width="12" x="172" y="359"></rect>
+<circle cx="206" cy="358" r="6"></circle><rect height="22" rx="4" width="12" x="200" y="365"></rect>
+<circle cx="232" cy="350" r="6"></circle><rect height="28" rx="4" width="12" x="226" y="357"></rect>
+<circle cx="258" cy="356" r="6"></circle><rect height="24" rx="4" width="12" x="252" y="363"></rect>
+</g>
+</svg>
+<p class="dk-foot">ช่วงแรกยังไม่จำกัดจำนวนรับ: วัดว่าใครผ่านเกณฑ์ ไม่ได้วัดว่าใครชนะใคร</p>
+</div>
+<div class="scene" data-s="bar">
+<p class="dk-kicker">นักศึกษาเข้าใหม่ (ไม่ใช่ผู้สมัครหรือนักศึกษาทั้งหมด)</p>
+<h4 class="dk-h">เมื่อวิธีเข้าเรียนเปลี่ยน ใครเข้าถึงมหาวิทยาลัยได้บ้าง</h4>
+<svg aria-label="นักศึกษาเข้าใหม่ 6,976 คนในปี 2502 ลดเหลือ 1,795 คนในปี 2503" role="img" viewbox="0 0 520 330">
+<line class="gl" style="stroke:#968c81" x1="40" x2="500" y1="250" y2="250"></line>
+<rect class="bb" fill="#d4a72c" height="181.6" width="150" x="70" y="68.4"></rect>
+<rect class="bb b2" fill="#e2534a" height="46.7" width="150" x="250" y="203.3"></rect>
+<text style="font-size:24px;font-weight:800" text-anchor="middle" x="145" y="56">6,976</text>
+<text class="bbl" style="font-size:24px;font-weight:800" text-anchor="middle" x="325" y="192">1,795</text>
+<text class="ax" text-anchor="middle" x="145" y="272">พ.ศ. 2502</text><text class="ax" text-anchor="middle" x="325" y="272">พ.ศ. 2503</text>
+<text class="bbl late" style="font-size:54px;font-weight:800;fill:#e2534a!important;font-family:Georgia,serif" text-anchor="end" x="420" y="110">−74.3%</text>
+<text class="bbl late" style="font-size:12px;fill:#968c81!important" text-anchor="end" x="420" y="134">เทียบ พ.ศ. 2502 กับ 2503 เท่านั้น</text>
+</svg>
+<p class="dk-foot">ผู้จบ ม.ศ.5 ในปีนั้นหมดโอกาสเข้าเรียนต่อในมหาวิทยาลัยกันมาก</p>
+</div>
+</div></div>
+<div class="steps">
+<div class="step" data-scene="name"><div class="card">
+<div class="tag"><span class="n">3.1</span>ชื่อเต็ม</div>
+<h3>มหาวิทยาลัยวิชาธรรมศาสตร์และการเมือง</h3>
+<p>ชื่อแรกของมหาวิทยาลัยบอกพันธกิจไว้ในตัว คือสอน "วิชา" ด้าน "ธรรมศาสตร์" และ "การเมือง" ให้ราษฎร</p>
+</div></div>
+<div class="step" data-cut="1" data-scene="name"><div class="card">
+<div class="tag"><span class="n">3.2</span>8 พฤศจิกายน 2490</div>
+<h3>คำว่า "วิชา" และ "การเมือง" ถูกตัดออก</h3>
+<p>คณะรัฐประหารยึดอำนาจการปกครองประเทศ ผู้ประศาสน์การ ปรีดี พนมยงค์ ต้องลี้ภัยการเมืองไปอยู่ต่างประเทศ ชื่อมหาวิทยาลัยถูกเปลี่ยนเป็น "มหาวิทยาลัยธรรมศาสตร์" (มธ.)</p>
+<p>ตำแหน่ง "ผู้ประศาสน์การ" ถูกยกเลิก เปลี่ยนเป็น "อธิการบดี" เมื่อจอมพล ป.พิบูลสงคราม เข้ารับตำแหน่งเอง</p>
+</div></div>
+<div class="step" data-scene="tree"><div class="card">
+<div class="tag"><span class="n">3.3</span>โครงสร้างเปลี่ยน</div>
+<h3>ธรรมศาสตรบัณฑิตแตกเป็น 5 สาขา</h3>
+<p>หลักสูตรธรรมศาสตรบัณฑิตถูกยกเลิก ขยายออกเป็นนิติศาสตร์ รัฐศาสตร์ เศรษฐศาสตร์ พาณิชยศาสตร์และการบัญชี และสังคมสงเคราะห์ แต่ละคณะมีปริญญาบัตรตามสาขาของตนเอง ไม่ได้เป็นปริญญาบัตรกลางชื่อ "ธรรมศาสตรบัณฑิต" อย่างแต่ก่อน</p>
+</div></div>
+<div class="step" data-scene="reg"><div class="card">
+<div class="tag"><span class="n">3.4</span>ตลาดวิชายังเติบโต</div>
+<h3>จาก 7,094 สู่ 16,429 คนในทะเบียน</h3>
+<p>ปีแรกมีผู้สมัคร 7,094 คน เมื่อถึงปี 2490 มีนักศึกษากว่า 16,429 คนที่มีรายชื่ออยู่ในทะเบียน ช่วง 2490–2500 แม้นักศึกษาเต็มเวลาจะเพิ่มขึ้น แต่สัดส่วนยังไม่มากนัก โดยมีชื่อในทะเบียนอยู่ที่ 12,000–20,000 คน</p>
+<p class="note">ที่มา: WAY Magazine, "อุดมการณ์ธรรมศาสตร์ในยุคสมัยที่ผันแปร จุดสิ้นสุดตลาดวิชาและภาพจำ 'ปรีดี พนมยงค์' ที่ถูกลบ" (แหล่งเดียวกับตัวเลขผู้สมัคร 2500–2503 ในบทนี้)</p>
+</div></div>
+<div class="step" data-scene="line"><div class="card">
+<div class="tag"><span class="n">3.5</span>2500–2502</div>
+<h3>ผู้สมัครเพิ่มขึ้นทุกปี</h3>
+<p>ธรรมศาสตร์ในฐานะตลาดวิชาที่ไม่มีการสอบคัดเลือกและค่าเล่าเรียนไม่สูงนัก ทำให้มีผู้สนใจสมัครมาก ตั้งแต่ปี 2500–2502 มีผู้สมัคร 4,372 คน 5,389 คน และ 6,976 คนตามลำดับ</p>
+</div></div>
+<div class="step" data-scene="door"><div class="card">
+<div class="tag"><span class="n">3.6</span>พ.ศ. 2503</div>
+<h3>เมื่อประตูเปลี่ยนไป</h3>
+<p>มหาวิทยาลัยธรรมศาสตร์ถูกยกเลิกเป็นตลาดวิชา เปลี่ยนเป็นระบบสอบเข้าเช่นเดียวกับจุฬาลงกรณ์มหาวิทยาลัยและมหาวิทยาลัยเกษตรศาสตร์</p>
+<p>ช่วงแรกยังไม่จำกัดจำนวนนักศึกษา ผู้สอบแข่งกับตัวเอง หากทำข้อสอบได้คะแนนเกิน 50 เปอร์เซ็นต์ก็มีสิทธิ์เข้าศึกษา</p>
+</div></div>
+<div class="step" data-scene="bar"><div class="card">
+<div class="tag"><span class="n">3.7</span>ผลของประตูใหม่</div>
+<h3>นักศึกษาเข้าใหม่ลดลง 74.3%</h3>
+<p>ปี 2502 มีนักศึกษาเข้าใหม่ 6,976 คน แต่ปี 2503 ลดเหลือเพียง 1,795 คน ผู้จบ ม.ศ.5 ในปีนั้นหมดโอกาสเข้าเรียนต่อในมหาวิทยาลัยกันมาก</p>
+<p class="note">(1,795 − 6,976) ÷ 6,976 = −74.3%</p>
+</div></div>
+</div>
+</div>
+<div class="next"><a href="#ch4">บทที่ 4 <span>ท่าพระจันทร์ 49 ไร่</span> →</a></div>
+</section>
+<!-- ======================= CH4 ======================= -->
+<section class="chapter" id="ch4">
+<div class="opener">
+<p class="chno"><i>4</i>Four places · Many histories · One Thammasat</p>
+<h2>ท่าพระจันทร์ <em>49 ไร่</em> ฉากประวัติศาสตร์และพื้นที่แห่งเสรีภาพ</h2>
+<p class="lead">ในเมืองหลวงที่เคลื่อนไหวตลอดเวลา มีพื้นที่ริมแม่น้ำเจ้าพระยาที่เก็บเรื่องราวไว้มากกว่าที่ตาเห็น เดินตามเส้นสีแดงผ่าน 4 สถานที่ หรือแตะที่สถานที่บนแผนผัง</p>
+<figure aria-label="ภาพประกอบ: พื้นที่ท่าพระจันทร์" class="opener-art"><span class="art-number">ARCHIVE NOTE · 04</span><img alt="ภาพบริบททางการเมืองไทย" class="chapter-photo" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Dome_Building_TU.jpg"/><figcaption>ภาพถ่ายจากคลังภาพ · Wikimedia Commons</figcaption></figure>
+<div class="rule"></div>
+</div>
+<div class="scrolly">
+<div class="graphic"><div class="stage">
+<svg aria-label="แผนผังเชิงสัญลักษณ์ของมหาวิทยาลัยธรรมศาสตร์ ท่าพระจันทร์" class="map4" data-focus="intro" id="map4" role="img" viewbox="0 0 420 560">
+<rect fill="#f7f2e5" height="560" width="420" x="0" y="0"></rect>
+<path d="M0,34 C80,20 160,60 240,42 C310,26 370,52 420,40 L420,92 C360,104 300,80 230,96 C150,112 80,80 0,96 Z" fill="#cfe3e8"></path>
+<text style="font-size:14px;font-weight:700;fill:#3f7f96" text-anchor="middle" x="210" y="74">แม่น้ำเจ้าพระยา</text>
+<path class="bound" d="M48,118 H372 Q386,118 386,132 V500 Q386,514 372,514 H48 Q34,514 34,500 V132 Q34,118 48,118 Z"></path>
+<g fill="#e6dccb"><rect height="88" rx="3" width="54" x="52" y="292"></rect><rect height="80" rx="3" width="52" x="318" y="296"></rect><rect height="44" rx="3" width="80" x="52" y="400"></rect><rect height="44" rx="3" width="80" x="290" y="400"></rect><rect height="40" rx="3" width="70" x="170" y="136"></rect></g>
+<!-- route -->
+<path class="route" d="M300,206 C300,238 262,236 246,262" id="r4a"></path>
+<path class="route" d="M176,262 C164,236 138,246 118,226" id="r4b"></path>
+<path class="route" d="M92,228 C46,300 60,420 162,452" id="r4c"></path>
+<!-- intro overlay -->
+<g class="ov ov-intro"><text class="num-tab" style="font-size:96px;font-weight:800;fill:#c30d2f;opacity:.92" text-anchor="middle" x="210" y="336">49<tspan style="font-size:40px;fill:#d4a72c"> ไร่</tspan></text>
+<text style="font-size:14px;font-weight:700;fill:#5d544c" text-anchor="middle" x="210" y="366">≈ 78,400 ตารางเมตร (1 ไร่ = 1,600 ตร.ม.)</text></g>
+<!-- field -->
+<g aria-label="สนามฟุตบอล" class="place p-field" data-go="field" role="button" tabindex="0">
+<rect fill="#b8cf9c" height="112" rx="4" stroke="#fff" stroke-width="2" width="170" x="125" y="262"></rect>
+<g fill="none" stroke="#fff" stroke-width="1.6"><line x1="210" x2="210" y1="262" y2="374"></line><circle cx="210" cy="318" r="16"></circle><rect height="44" width="20" x="125" y="296"></rect><rect height="44" width="20" x="275" y="296"></rect></g>
+<g class="ov ov-field"><g class="crowd4" id="crowd4"></g></g>
+<rect class="pchip" height="24" rx="12" width="92" x="164" y="380"></rect><text class="plabel" text-anchor="middle" x="210" y="397">2 สนามฟุตบอล</text>
+</g>
+<!-- dome -->
+<g aria-label="ตึกโดม" class="place p-dome" data-go="dome" role="button" tabindex="0">
+<g class="ov ov-dome"><circle cx="300" cy="150" fill="none" r="48" stroke="#d4a72c" stroke-width="2"></circle><g id="rays"></g></g>
+<rect fill="#fffaf0" height="34" stroke="#1f1916" stroke-width="1.6" width="56" x="272" y="168"></rect>
+<rect fill="#fffaf0" height="22" stroke="#1f1916" stroke-width="1.6" width="28" x="286" y="146"></rect>
+<polygon fill="#cdbba6" points="282,146 300,110 318,146" stroke="#1f1916" stroke-width="1.6"></polygon>
+<line stroke="#1f1916" stroke-width="2" x1="300" x2="300" y1="110" y2="96"></line>
+<line stroke="#1f1916" stroke-width="1.6" x1="300" x2="300" y1="176" y2="202"></line>
+<rect class="pchip" height="24" rx="12" width="76" x="262" y="208"></rect><text class="plabel" text-anchor="middle" x="300" y="225">1 ตึกโดม</text>
+</g>
+<!-- lan pho -->
+<g aria-label="ลานโพธิ์" class="place p-lanpho" data-go="lanpho" role="button" tabindex="0">
+<g class="ov ov-lanpho"><circle class="ring" cx="104" cy="186" r="62" stroke-width="2"></circle><circle class="ring b" cx="104" cy="186" r="62" stroke-width="2"></circle><circle class="ring c" cx="104" cy="186" r="62" stroke-width="2"></circle></g>
+<rect fill="#8a6a4c" height="26" width="10" x="99" y="190"></rect>
+<circle cx="104" cy="176" fill="#7fa36e" r="22"></circle><circle cx="86" cy="186" fill="#8fb07d" r="15"></circle><circle cx="122" cy="186" fill="#8fb07d" r="15"></circle><circle cx="104" cy="160" fill="#9bbd88" r="14"></circle>
+<rect class="pchip" height="24" rx="12" width="84" x="62" y="222"></rect><text class="plabel" text-anchor="middle" x="104" y="239">3 ลานโพธิ์</text>
+</g>
+<!-- auditorium -->
+<g aria-label="หอประชุมใหญ่" class="place p-aud" data-go="aud" role="button" tabindex="0">
+<polygon fill="#cdbba6" points="150,436 210,412 270,436" stroke="#1f1916" stroke-width="1.6"></polygon>
+<rect fill="#fffaf0" height="8" stroke="#1f1916" stroke-width="1.4" width="116" x="152" y="436"></rect>
+<g stroke="#1f1916" stroke-width="1.6"><line x1="164" x2="164" y1="446" y2="472"></line><line x1="180" x2="180" y1="446" y2="472"></line><line x1="196" x2="196" y1="446" y2="472"></line><line x1="212" x2="212" y1="446" y2="472"></line><line x1="228" x2="228" y1="446" y2="472"></line><line x1="244" x2="244" y1="446" y2="472"></line><line x1="258" x2="258" y1="446" y2="472"></line></g>
+<rect fill="#cdbba6" height="6" stroke="#1f1916" stroke-width="1.4" width="120" x="150" y="472"></rect>
+<rect class="pchip" height="24" rx="12" width="108" x="156" y="484"></rect><text class="plabel" text-anchor="middle" x="210" y="501">4 หอประชุมใหญ่</text>
+</g>
+<!-- overlays text -->
+<g class="ov ov-dome"><text style="font-size:13px;font-weight:700;fill:#9e0a26" x="20" y="150">สงครามโลกครั้งที่ 2</text><text style="font-size:13px;fill:#5d544c" x="20" y="168">ศูนย์บัญชาการเสรีไทย</text></g>
+<g class="ov ov-field"><text style="font-size:32px;font-weight:800;fill:#9e0a26;font-family:Georgia,serif;paint-order:stroke;stroke:#fffef5;stroke-width:6px;stroke-linejoin:round" text-anchor="middle" x="210" y="330">6 OCT 1976</text></g>
+<g class="ov ov-lanpho"><text style="font-size:44px;font-weight:800;fill:#c30d2f" x="180" y="168">13 <tspan style="font-size:20px">คน</tspan></text>
+<text style="font-size:14px;font-weight:700;fill:#1f1916" x="182" y="196">14 ตุลาคม 2516</text><text style="font-size:14px;font-weight:700;fill:#1f1916" x="182" y="214">6 ตุลาคม 2519</text><text style="font-size:14px;font-weight:700;fill:#8e8379" x="182" y="232">พฤษภาคม 2535</text></g>
+<g class="ov ov-aud"><text class="word" style="font-size:20px" x="96" y="420">อภิปราย</text><text class="word" style="font-size:16px" x="268" y="412">วิพากษ์วิจารณ์</text><text class="word" style="font-size:16px;fill:#9e0a26" x="72" y="470">สังคม</text><text class="word" style="font-size:20px;fill:#9e0a26" x="286" y="466">การเมือง</text><text class="word" style="font-size:13px;fill:#5d544c" x="146" y="540">เสรีภาพในการแสดงความคิดเห็น</text></g>
+<text class="map-note" text-anchor="end" x="410" y="554">แผนผังเชิงสัญลักษณ์ ไม่ใช่มาตราส่วนจริง</text>
+</svg>
+</div></div>
+<div class="steps">
+<div class="step" data-focus="intro"><div class="card">
+<div class="tag"><span class="n">4.0</span>พื้นที่ที่กำลังจะถูกสำรวจ</div>
+<h3>ท่าพระจันทร์ ริมแม่น้ำเจ้าพระยา</h3>
+<p>พื้นที่ 49 ไร่ของมหาวิทยาลัยธรรมศาสตร์ ท่าพระจันทร์ บนเกาะรัตนโกสินทร์ เส้นทางแรกของเรื่องราวเริ่มที่ตึกโดม</p>
+</div></div>
+<div class="step" data-focus="dome"><div class="card">
+<div class="tag"><span class="n">01</span>ตึกโดม</div>
+<h3>สัญลักษณ์แห่งปัญญาและเสรีภาพ</h3>
+<p>ยอดแหลมคล้ายปัญญาที่ชี้ขึ้นสู่ท้องฟ้า สื่อถึงการบันทึกและสร้างสรรค์เรื่องราวดี ๆ เคยเป็นศูนย์บัญชาการเสรีไทยในช่วงสงครามโลกครั้งที่ 2 และเป็นฉากสำคัญของการต่อสู้เรียกร้องประชาธิปไตยหลายครั้ง จึงเป็นสัญลักษณ์สำคัญของมหาวิทยาลัย</p>
+</div></div>
+<div class="step" data-focus="field"><div class="card">
+<div class="tag"><span class="n">02</span>สนามฟุตบอล</div>
+<h3>พื้นที่ที่ความทรงจำทางการเมืองไม่เคยเลือนหาย</h3>
+<p>ตั้งอยู่ระหว่างตึกโดมกับหอประชุมใหญ่ นอกจากใช้สำหรับกิจกรรมกีฬาแล้ว ยังเป็นสถานที่สำคัญทางประวัติศาสตร์การเมือง โดยเฉพาะเหตุการณ์ 6 ตุลาคม พ.ศ. 2519 ที่นักศึกษาและประชาชนชุมนุมอยู่บริเวณสนามแห่งนี้</p>
+</div></div>
+<div class="step" data-focus="lanpho"><div class="card">
+<div class="tag"><span class="n">03</span>ลานโพธิ์</div>
+<h3>จากจุดเริ่มต้นของการชุมนุม สู่พื้นที่แห่งความทรงจำ</h3>
+<p>บริเวณหน้าคณะศิลปศาสตร์ เป็นจุดเริ่มต้นการชุมนุมของนักศึกษาเพื่อเรียกร้องให้ปล่อยตัวผู้เรียกร้องรัฐธรรมนูญ 13 คน ก่อนขยายไปยังสนามฟุตบอลและนำไปสู่เหตุการณ์ 14 ตุลาคม 2516 และเป็นพื้นที่ชุมนุมสำคัญในเหตุการณ์ 6 ตุลาคม 2519 และพฤษภาคม 2535</p>
+</div></div>
+<div class="step" data-focus="aud"><div class="card">
+<div class="tag"><span class="n">04</span>หอประชุมใหญ่</div>
+<h3>พื้นที่แลกเปลี่ยนความคิดและเสรีภาพในการแสดงความคิดเห็น</h3>
+<p>ใช้เป็นพื้นที่อภิปราย วิพากษ์วิจารณ์สังคมและการเมือง และจัดนิทรรศการแสดงความคิดเห็นของนักศึกษาและประชาชน มีบทบาทสำคัญในเหตุการณ์ 6 ตุลาคม พ.ศ. 2519 จึงเป็นสัญลักษณ์ของการต่อสู้เพื่อประชาธิปไตย</p>
+</div></div>
+</div>
+</div>
+<div class="next"><a href="#ch5">บทที่ 5 <span>14 ตุลา</span> →</a></div>
+</section>
+<!-- ======================= CH5 ======================= -->
+<section class="chapter" id="ch5">
+<div class="opener">
+<p class="chno"><i>5</i>14 ตุลาคม 2516</p>
+<h2>14 ตุลา: เมื่อ<em>เสียงประชาชน</em>ดังขึ้น</h2>
+<p class="lead">วันที่การชุมนุมเรียกร้องรัฐธรรมนูญของนักศึกษาและประชาชนปะทุสู่เหตุการณ์ครั้งสำคัญ จนนำไปสู่การสิ้นสุดอำนาจของรัฐบาลจอมพลถนอม กิตติขจร และกลายเป็นหมุดหมายสำคัญของประชาธิปไตยไทย</p>
+<figure aria-label="ภาพประกอบ: เสียงประชาชน" class="opener-art"><span class="art-number">ARCHIVE NOTE · 05</span><img alt="ภาพถ่ายจริงขบวนผู้ชุมนุมเรียกร้องประชาธิปไตยในเหตุการณ์ 14 ตุลาคม 2516" class="chapter-photo" loading="eager" src="https://thaingo.org/files/content/IMG_0485.jpeg"/><figcaption>ภาพเหตุการณ์ 14 ตุลาคม 2516 · คลังภาพ ThaiNGO</figcaption></figure>
+<div class="rule"></div>
+</div>
+<div class="scrolly" id="ch5a">
+<div class="graphic"><div class="stage">
+<svg aria-label="เส้นทางการเคลื่อนขบวนจากธรรมศาสตร์สู่อนุสาวรีย์ประชาธิปไตย" class="map5" data-stage="0" id="map5" role="img" viewbox="0 0 480 420">
+<rect fill="#f7f2e5" height="420" width="480"></rect>
+<path d="M38,0 C70,90 30,170 62,250 C88,320 50,370 70,420 L28,420 C10,370 46,320 22,250 C-6,170 34,90 0,0 Z" fill="#cfe3e8"></path>
+<text style="font-size:12px;font-weight:700;fill:#3f7f96" text-anchor="middle" transform="rotate(-90 30 150)" x="30" y="150">แม่น้ำเจ้าพระยา</text>
+<rect fill="#dbe7cf" height="150" rx="30" width="72" x="150" y="128"></rect><text class="t-sm" text-anchor="middle" x="186" y="208">สนามหลวง</text>
+<rect fill="#ece3d1" height="64" rx="4" width="100" x="116" y="304"></rect><text class="t-sm" text-anchor="middle" x="166" y="341">พระบรมมหาราชวัง</text>
+<line stroke="#e7dccb" stroke-linecap="round" stroke-width="16" x1="232" x2="470" y1="118" y2="118"></line>
+<line stroke="#ece3d1" stroke-width="9" x1="232" x2="232" y1="118" y2="296"></line>
+<text class="t-sm" style="font-size:12px" text-anchor="middle" x="350" y="100">ถนนราชดำเนินกลาง</text>
+<rect fill="#cdbba6" height="86" rx="3" width="58" x="76" y="186"></rect><text style="font-size:13px;font-weight:700" text-anchor="middle" x="105" y="290">ธรรมศาสตร์</text>
+<path class="r5" d="M110,214 C150,206 170,120 232,118 L310,118" id="r5a"></path>
+<path class="r5" d="M310,118 L404,118" id="r5b"></path>
+<g fill="#1f1916" transform="translate(404,118)"><circle fill="#fffef5" r="10" stroke="#1f1916" stroke-width="2"></circle><rect height="12" width="4" x="-2" y="-20"></rect><rect height="12" width="4" x="-2" y="8"></rect><rect height="4" width="12" x="-20" y="-2"></rect><rect height="4" width="12" x="8" y="-2"></rect></g>
+<text style="font-size:12px;font-weight:700" text-anchor="middle" x="404" y="156">อนุสาวรีย์ประชาธิปไตย</text>
+<g class="pt5" id="p5a" transform="translate(110,214)"><circle class="ring pulse" r="26" stroke-width="2"></circle><circle class="core" r="9"></circle><text style="font-size:12px;font-weight:800;fill:#c30d2f" text-anchor="middle" x="0" y="-16">01</text></g>
+<g class="pt5" id="p5b" transform="translate(310,118)"><circle class="ring pulse" r="26" stroke-width="2"></circle><circle class="core" r="9"></circle><text style="font-size:12px;font-weight:800;fill:#c30d2f" text-anchor="middle" x="0" y="-16">02</text></g>
+<g class="pt5" id="p5c" transform="translate(404,118)"><circle class="ring pulse" r="30" stroke-width="2"></circle><text style="font-size:12px;font-weight:800;fill:#c30d2f" text-anchor="middle" x="0" y="-26">03</text></g>
+<text class="t-date" id="c5date" text-anchor="end" x="470" y="40">14 ตุลาคม 2516</text>
+<text class="t-lbl" id="c5sub" text-anchor="end" x="470" y="62">เลื่อนเพื่อเดินตามขบวน</text>
+<g class="placard"><g transform="translate(250,300) rotate(-4)"><rect fill="#fffef5" height="72" stroke="#1f1916" stroke-width="2" width="240" x="-120" y="-38"></rect><text style="font-size:30px;font-weight:800;fill:#c30d2f" text-anchor="middle" x="0" y="8">เอาประชาชนคืนมา</text><line stroke="#8a6a4c" stroke-width="6" x1="0" x2="0" y1="34" y2="96"></line></g></g>
+<g class="after5"><circle cx="105" cy="229" fill="none" r="50" stroke="#1f1916" stroke-dasharray="6 5" stroke-width="3"></circle><text style="font-size:22px;font-weight:800;fill:#1f1916" x="160" y="250">3 ปีต่อมา</text><text style="font-size:15px;font-weight:700;fill:#c30d2f" x="160" y="272">6 ตุลาคม 2519</text></g>
+<text class="map-note" text-anchor="end" x="470" y="412">แผนผังเชิงสัญลักษณ์ ไม่ใช่มาตราส่วนจริง</text>
+</svg>
+</div></div>
+<div class="steps">
+<div class="step"><div class="card">
+<div class="tag"><span class="n">5.1</span>หน้า 1</div>
+<h3>14 ตุลา เมื่อเสียงประชาชนดังขึ้น</h3>
+<p>14 ตุลาคม 2516 คือวันที่การชุมนุมเรียกร้องรัฐธรรมนูญของนักศึกษาและประชาชนปะทุสู่เหตุการณ์ครั้งสำคัญ จนนำไปสู่การสิ้นสุดอำนาจของรัฐบาลจอมพลถนอม กิตติขจร</p>
+</div></div>
+<div class="step"><div class="card">
+<div class="tag"><span class="n">5.2</span>หน้า 2</div>
+<h3>จากรั้วมหาวิทยาลัย สู่ถนนของประชาชน</h3>
+<p>การเรียกร้องเริ่มจากพื้นที่มหาวิทยาลัย ก่อนขยายออกสู่ถนนสายสำคัญของกรุงเทพฯ เมื่อผู้คนออกมาร่วมกันส่งเสียง พื้นที่ในเมืองก็กลายเป็นส่วนหนึ่งของการเคลื่อนไหวครั้งประวัติศาสตร์</p>
+</div></div>
+<div class="step"><div class="card">
+<div class="tag"><span class="n">01</span>มหาวิทยาลัยธรรมศาสตร์</div>
+<h3>การชุมนุมเริ่มที่ลานโพธิ์</h3>
+<p class="date">9 ตุลาคม 2516</p>
+<p>การชุมนุมเริ่มรวมตัวบริเวณลานโพธิ์ เรียกร้องให้ปล่อยตัวผู้ถูกจับกุมจากการเรียกร้องรัฐธรรมนูญ ก่อนย้ายลงสนามฟุตบอลเพื่อรองรับประชาชนที่เพิ่มขึ้นจนเต็มพื้นที่</p>
+</div></div>
+<div class="step"><div class="card">
+<div class="tag"><span class="n">02</span>ถนนราชดำเนิน</div>
+<h3>ก้าวออกจากประตูธรรมศาสตร์</h3>
+<p class="date">13 ตุลาคม 2516</p>
+<p>ผู้ชุมนุมเคลื่อนขบวนออกจากธรรมศาสตร์สู่พื้นที่สาธารณะใจกลางกรุงเทพฯ เพื่อแสดงพลังเรียกร้องรัฐธรรมนูญ</p>
+</div></div>
+<div class="step"><div class="card">
+<div class="tag"><span class="n">03</span>อนุสาวรีย์ประชาธิปไตย</div>
+<h3>จุดศูนย์กลางของเหตุการณ์</h3>
+<p class="date">13–14 ตุลาคม 2516</p>
+<p>บริเวณถนนราชดำเนินและพื้นที่ใกล้เคียงกลายเป็นจุดสำคัญของเหตุการณ์ ก่อนสถานการณ์ยกระดับเป็นความรุนแรง พลังมวลชนนำไปสู่การเปลี่ยนผ่านจากระบอบเผด็จการทหารสู่ยุคแห่งสิทธิเสรีภาพ</p>
+</div></div>
+</div>
+</div>
+<div class="band-dark">
+<div class="opener sub">
+<p class="chno"><i>5</i>เสียงจากธรรมศาสตร์ · เรื่องราวยังไม่จบ</p>
+<h2>ธรรมศาสตร์ พื้นที่แห่งการตั้งคำถาม<em>และความทรงจำ</em></h2>
+<p class="lead">14 ตุลาคม 2516 นักศึกษาและประชาชนกดดันให้รัฐบาลทหารพ้นจากอำนาจได้ แต่เส้นทางประชาธิปไตยไม่ได้ราบรื่นหรือจบลงในวันนั้น ไทม์ไลน์ด้านล่างวางตามจำนวนวันจริงระหว่างสองเดือนตุลาคม</p>
+</div>
+<div class="scrolly" id="ch5b">
+<div class="graphic"><div class="stage">
+<svg aria-label="ไทม์ไลน์ 1,088 วันจาก 14 ตุลาคม 2516 ถึง 6 ตุลาคม 2519" data-st="0" id="t5" role="img" viewbox="0 0 560 512">
+<text class="dkm" style="font-size:13px" x="40" y="34">14 ต.ค. 2516 → 6 ต.ค. 2519</text>
+<text class="num-tab" style="font-size:50px;font-weight:800;fill:#f4ede1" x="40" y="84">1,088 <tspan style="font-size:22px;fill:#e2534a">วัน</tspan></text>
+<text id="t5date" style="font-size:20px;font-weight:800;fill:#e2534a" text-anchor="end" x="520" y="84">14 ต.ค. 2516</text>
+<g class="grp g-q">
+<g transform="translate(150,160) rotate(-3)"><rect fill="#fffef5" height="58" width="224" x="-112" y="-30"></rect><text style="font-size:26px;font-weight:800;fill:#c30d2f" text-anchor="middle" x="0" y="9">เอาประชาชนคืนมา</text></g>
+<text class="num-tab" style="font-size:30px;font-weight:800;fill:#e2534a" x="300" y="150">≥ 77</text>
+<text style="font-size:13px;fill:#f4ede1" x="368" y="146">ผู้เสียชีวิต 14 ต.ค. 2516</text>
+<text class="dkm" style="font-size:12px" x="368" y="164">บาดเจ็บอีกหลายร้อยคน</text>
+<text class="dkm" style="font-size:12px" x="300" y="194">ถนอม ลาออกจากตำแหน่งนายกรัฐมนตรี</text>
+</g>
+<g class="grp g-ex">
+<text class="dkm" style="font-size:12px" x="40" y="226">ผู้นำที่ออกนอกประเทศ 15 ต.ค. 2516</text>
+<rect fill="#5a3a2e" height="22" rx="3" width="456.8" x="40.4" y="234"></rect><text style="font-size:12.5px;font-weight:700;fill:#f4ede1" x="48" y="250">จอมพลประภาส จารุเสถียร · นอกประเทศราว 1,036 วัน</text>
+<rect fill="#7a3a2e" height="22" rx="3" width="472" x="40.4" y="262"></rect><text style="font-size:12.5px;font-weight:700;fill:#f4ede1" x="48" y="278">จอมพลถนอม กิตติขจร · นอกประเทศราว 1,070 วัน</text>
+</g>
+<g class="grp g-ret">
+<circle cx="497.5" cy="245" fill="#d4a72c" r="6"></circle><circle cx="512" cy="273" fill="#d4a72c" r="6"></circle>
+<text style="font-size:12px;font-weight:700;fill:#d4a72c" text-anchor="end" x="490" y="226">กลับ ส.ค. 2519 · 19 ก.ย. 2519 (ในผ้าเหลือง)</text>
+</g>
+<g>
+<line stroke="#5a5048" stroke-width="2" x1="40" x2="520" y1="310" y2="310"></line>
+<g class="dkm" style="font-size:11px"><line stroke="#5a5048" x1="74.9" x2="74.9" y1="304" y2="316"></line><text class="dkm" text-anchor="middle" x="74.9" y="328">2517</text>
+<line stroke="#5a5048" x1="235.9" x2="235.9" y1="304" y2="316"></line><text class="dkm" text-anchor="middle" x="235.9" y="328">2518</text>
+<line stroke="#5a5048" x1="396.9" x2="396.9" y1="304" y2="316"></line><text class="dkm" text-anchor="middle" x="396.9" y="328">2519</text></g>
+</g>
+<g class="grp g-pm">
+<text class="dkm" style="font-size:12px" x="40" y="350">นายกรัฐมนตรี (วางตามเดือนโดยประมาณ)</text>
+<rect fill="#d4a72c" height="32" width="215.7" x="40" y="358"></rect><text style="font-size:13px;font-weight:800;fill:#17120f" text-anchor="middle" x="147.8" y="379">สัญญา ธรรมศักดิ์</text>
+<rect fill="#c30d2f" height="32" width="11.9" x="255.7" y="358"></rect>
+<rect fill="#cdbba6" height="32" width="177.8" x="267.6" y="358"></rect><text style="font-size:13px;font-weight:800;fill:#17120f" text-anchor="middle" x="356.5" y="379">ม.ร.ว.คึกฤทธิ์ ปราโมช</text>
+<rect fill="#c30d2f" height="32" width="74.6" x="445.4" y="358"></rect><text style="font-size:12px;font-weight:800;fill:#f4ede1" text-anchor="middle" x="482.7" y="379">ม.ร.ว.เสนีย์</text>
+<path d="M261.6,392 V404" stroke="#c30d2f"></path><text style="font-size:11px;fill:#e2534a" text-anchor="middle" x="261.6" y="416">ม.ร.ว.เสนีย์ (ก.พ.–มี.ค. 2518)</text>
+</g>
+<g class="grp g-el">
+<path d="M198,430 V446" stroke="#f4ede1" stroke-width="2"></path><text style="font-size:11.5px;fill:#f4ede1" text-anchor="end" x="194" y="460">รัฐธรรมนูญ 2517</text>
+<path d="M247.4,430 V446" stroke="#f4ede1" stroke-width="2"></path><text style="font-size:11.5px;fill:#f4ede1" x="251" y="460">เลือกตั้ง 26 ม.ค. 2518</text>
+<path d="M438.2,430 V464" stroke="#f4ede1" stroke-width="2"></path><text style="font-size:11.5px;fill:#f4ede1" text-anchor="end" x="434" y="476">เลือกตั้ง 4 เม.ย. 2519</text>
+</g>
+<g class="grp g-end">
+<line stroke="#e2534a" stroke-dasharray="5 4" stroke-width="3" x1="520" x2="520" y1="110" y2="470"></line>
+<circle cx="520" cy="310" fill="#e2534a" r="8"></circle>
+<text style="font-size:14px;font-weight:800;fill:#e2534a" text-anchor="end" x="512" y="502">6 ต.ค. 2519 · เช้าวันที่ธรรมศาสตร์เปลี่ยนไป</text>
+</g>
+<circle cx="40" cy="310" fill="#f4ede1" r="7"></circle>
+</svg>
+</div></div>
+<div class="steps">
+<div class="step"><div class="card">
+<div class="tag"><span class="n">5.3</span>เสียงจากธรรมศาสตร์ · ข้อความบนป้ายประวัติศาสตร์</div>
+<h3>"เอาประชาชนคืนมา"</h3>
+<p>ข้อความที่ปรากฏบริเวณมหาวิทยาลัยธรรมศาสตร์ในช่วงการชุมนุมเดือนตุลาคม 2516 สะท้อนข้อเรียกร้องที่อยู่ใจกลางการเคลื่อนไหว คือการมีส่วนร่วมของประชาชนและการเรียกร้องรัฐธรรมนูญ</p>
+<p>วันที่ 14 ตุลาคม รัฐบาลใช้กำลังสลายผู้ชุมนุม มีผู้เสียชีวิตอย่างน้อย 77 ราย และบาดเจ็บอีกหลายร้อยคน ก่อนที่จอมพลถนอม กิตติขจร จะลาออกจากตำแหน่งนายกรัฐมนตรี</p>
+<p class="note">อ้างอิง: Thai PBS NOW, "เปิดลำดับเหตุการณ์ประวัติศาสตร์ 14 ตุลา 2516" · Thai PBS, "รำลึก 50 ปี 14 ตุลา 2516"</p>
+</div></div>
+<div class="step"><div class="card">
+<div class="tag"><span class="n">5.4</span>15 ตุลาคม 2516</div>
+<h3>"สามทรราช" ออกนอกประเทศ</h3>
+<p>จอมพลถนอม กิตติขจร อดีตนายกรัฐมนตรี จอมพลประภาส จารุเสถียร อดีตรองนายกรัฐมนตรี และ พ.อ.ณรงค์ กิตติขจร เดินทางออกนอกประเทศ ความรุนแรงจึงยุติลง ระบอบทหารที่ปกครองต่อเนื่องมา 15 ปี ตั้งแต่รัฐประหาร 2501 สิ้นสุดลง</p>
+</div></div>
+<div class="step"><div class="card">
+<div class="tag"><span class="n">5.5</span>2516–2519</div>
+<h3>สามปีของรัฐบาลพลเรือน: 3 นายกรัฐมนตรี 2 การเลือกตั้ง</h3>
+<p>สัญญา ธรรมศักดิ์ อดีตอธิการบดีมหาวิทยาลัยธรรมศาสตร์และอดีตประธานศาลฎีกา ได้รับแต่งตั้งเป็นนายกรัฐมนตรี ตามด้วยรัฐธรรมนูญ 2517 การเลือกตั้ง 26 มกราคม 2518 และ 4 เมษายน 2519</p>
+<p>ตำแหน่งนายกฯ เปลี่ยนจากสัญญา เป็น ม.ร.ว.เสนีย์ ปราโมช (ช่วงสั้น ๆ ต้นปี 2518) ม.ร.ว.คึกฤทธิ์ ปราโมช และกลับมาเป็น ม.ร.ว.เสนีย์ อีกครั้งตั้งแต่ 20 เมษายน 2519</p>
+<p class="note">อ้างอิงวันเลือกตั้งและวันเริ่มรัฐบาลเสนีย์ 2519: มติชน · คณะรัฐมนตรีไทย พ.ศ. 2516–2519 (วารสาร e-JODIL)</p>
+</div></div>
+<div class="step"><div class="card">
+<div class="tag"><span class="n">5.6</span>ส.ค. – ก.ย. 2519</div>
+<h3>อดีตผู้นำกลับเข้าประเทศ</h3>
+<p>เดือนสิงหาคม 2519 จอมพลประภาสกลับไทยหลังอยู่นอกประเทศราว 1,036 วัน และวันที่ 19 กันยายน 2519 จอมพลถนอมกลับเข้าประเทศในผ้าเหลือง และบวชที่วัดบวรนิเวศวิหาร หลังอยู่นอกประเทศราว 1,070 วัน นักศึกษาและประชาชนกลับมาชุมนุมที่ธรรมศาสตร์อีกครั้ง</p>
+</div></div>
+<div class="step"><div class="card">
+<div class="tag"><span class="n">5.7</span>3 ปีต่อมา · 6 ตุลาคม 2519</div>
+<h3>จากความหวัง สู่บาดแผลที่ธรรมศาสตร์</h3>
+<p>1,088 วันหลังวันที่ประชาชนชนะ เช้ามืดวันที่ 6 ตุลาคม 2519 เกิดการล้อมปราบอย่างรุนแรงในมหาวิทยาลัยธรรมศาสตร์ และเย็นวันเดียวกันเกิดรัฐประหาร เหตุการณ์นี้เป็นบาดแผลทางประวัติศาสตร์ที่ต้องจดจำและศึกษาอย่างรอบด้าน</p>
+<p><a href="#ch6">อ่านความเชื่อมโยง 14 ตุลา – 6 ตุลา ในบทที่ 6 →</a></p>
+</div></div>
+</div>
+</div>
+</div>
+<div class="next"><a href="#ch6">บทที่ 6 <span>6 ตุลาคม 2519</span> →</a></div>
+</section>
+<!-- ======================= CH6 ======================= -->
+<section class="chapter" id="ch6">
+<div class="opener o6">
+<span aria-hidden="true" class="ghost">06</span>
+<p class="chno"><i>6</i>Historical scrollytelling · บันทึกประวัติศาสตร์</p>
+<h2>จากความหวัง สู่ <em>6 ตุลาคม 2519</em></h2>
+<p class="lead">หลังการเปลี่ยนแปลงทางการเมืองในปี 2516 ความขัดแย้งยังคงดำเนินต่อไป การกลับมาของจอมพลถนอม กิตติขจร จุดกระแสการต่อต้านของนักศึกษาและประชาชน ก่อนที่เช้าวันที่ 6 ตุลาคม 2519 จะกลายเป็นหนึ่งในบาดแผลสำคัญของประวัติศาสตร์ไทย</p>
+<figure aria-label="ภาพประกอบ: ความทรงจำ 6 ตุลา" class="opener-art"><span class="art-number">ARCHIVE NOTE · 06</span><img alt="ภาพสถานการณ์จริงในเหตุการณ์ 6 ตุลาคม 2519 ที่มหาวิทยาลัยธรรมศาสตร์" class="chapter-photo" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Thammasat_University_Massacre_1976-10-06_(a18).jpg"/><figcaption>ภาพเหตุการณ์ 6 ตุลาคม 2519 · Wikimedia Commons</figcaption></figure>
+<ol class="parts">
+<li><a href="#ch6-1"><b>01</b>ก่อนเกิดเหตุ<span>52 วัน · 7 เหตุการณ์</span></a></li>
+<li><a href="#ch6-2"><b>02</b>6 ตุลาคม<span>05:30 น. ถึงช่วงเย็น</span></a></li>
+<li><a href="#ch6-3"><b>03</b>ความทรงจำ<span>50 ปี · 2519–2569</span></a></li>
+</ol>
+<figure class="photo"><img alt="ภาพประกอบเหตุการณ์ 6 ตุลาคม 2519" onerror="this.closest('figure').hidden=true" src="images/6oct-hero.jpg"/><figcaption>ภาพประกอบบริบททางประวัติศาสตร์ · โปรดตรวจสอบเครดิตและสิทธิ์การใช้ภาพก่อนเผยแพร่</figcaption></figure>
+</div>
+<!-- 01 -->
+<div class="opener sub" id="ch6-1">
+<p class="chno"><i>01</i>Before the day</p>
+<h2>ความตึงเครียดที่ค่อย ๆ ก่อตัว</h2>
+<p class="lead">เหตุการณ์ 6 ตุลาไม่ได้เกิดขึ้นอย่างโดดเดี่ยว แต่เกิดท่ามกลางความขัดแย้งทางการเมืองและการปลุกกระแสต่อต้านนักศึกษา แต่ละช่องในปฏิทินคือหนึ่งวัน ตั้งแต่ 16 สิงหาคม ถึง 6 ตุลาคม 2519</p>
+</div>
+<div class="scrolly" id="ch6a">
+<div class="graphic"><div class="stage">
+<svg aria-label="ปฏิทิน 16 สิงหาคม ถึง 6 ตุลาคม 2519 ไฮไลต์วันที่เกิดเหตุการณ์" id="cal6" role="img" viewbox="0 0 430 570">
+<defs><pattern height="7" id="hatch" patterntransform="rotate(45)" patternunits="userSpaceOnUse" width="7"><rect fill="#f1ebdd" height="7" width="7"></rect><line stroke="#e8a8a8" stroke-width="3" x1="0" x2="0" y1="0" y2="7"></line></pattern></defs>
+<text class="c6count num-tab" id="c6count" x="40" y="52">52</text>
+<text class="t-lbl" id="c6unit" style="font-size:14px" x="40" y="76">วัน · 16 ส.ค. – 6 ต.ค. 2519</text>
+<g id="c6grid"></g>
+</svg>
+</div></div>
+<div class="steps vt">
+<div class="step" data-count="52" data-hl="" data-unit="วัน · 16 ส.ค. – 6 ต.ค. 2519"><div class="card">
+<p class="date">จากการกลับมา สู่การเผชิญหน้า</p>
+<h3>52 วัน 7 เหตุการณ์</h3>
+<p>เลื่อนอ่านทีละช่วงเวลา จุดบนเส้นเวลาและช่องในปฏิทินจะเด่นขึ้นตามเหตุการณ์ที่กำลังอ่าน หลังวันที่ 16 สิงหาคม ปฏิทินเงียบไป 34 วัน ก่อนที่เหตุการณ์ 6 จาก 7 ครั้งจะเกิดใน 18 วันสุดท้าย</p>
+</div></div>
+<div class="step" data-count="51" data-hl="0" data-unit="วันก่อนเช้าวันที่ 6 ตุลาคม"><div class="card">
+<p class="date">16 สิงหาคม 2519</p>
+<h3>จอมพลประภาสกลับไทย</h3>
+<p>การกลับมาของจอมพลประภาส จารุเสถียร อดีตผู้นำที่ถูกขับออกนอกประเทศหลังเหตุการณ์ 14 ตุลา ทำให้เกิดการต่อต้านจากนักศึกษาและประชาชน</p>
+<p class="note">บางแหล่ง (เช่น Wikipedia) ระบุวันที่ 17 สิงหาคม 2519</p>
+</div></div>
+<div class="step" data-count="17" data-hl="34" data-unit="วันก่อนเช้าวันที่ 6 ตุลาคม"><div class="card">
+<p class="date">19 กันยายน 2519</p>
+<h3>จอมพลถนอมกลับเข้าประเทศ</h3>
+<p>จอมพลถนอม กิตติขจร เดินทางกลับประเทศไทยในฐานะพระสงฆ์ และอุปสมบทที่วัดบวรนิเวศวิหาร ข่าวการกลับมาของเขากลายเป็นชนวนสำคัญให้เกิดการประท้วง</p>
+</div></div>
+<div class="step" data-count="16" data-hl="35" data-unit="วันก่อนเช้าวันที่ 6 ตุลาคม"><div class="card">
+<p class="date">20 กันยายน 2519</p>
+<h3>สื่อออกข่าวโจมตีนักศึกษา</h3>
+<p>สื่อออกข่าวโจมตีนักศึกษาว่าเป็นฝ่ายคอมมิวนิสต์ เพียงหนึ่งวันหลังการกลับมาของจอมพลถนอม</p>
+</div></div>
+<div class="step" data-count="12" data-hl="39" data-unit="วันก่อนเช้าวันที่ 6 ตุลาคม"><div class="card">
+<p class="date">24 กันยายน 2519</p>
+<h3>การเสียชีวิตอย่างน่าสงสัย</h3>
+<p>สมาชิกฝ่ายต่อต้านเผด็จการเสียชีวิตอย่างน่าสงสัย จากเหตุฆ่าแขวนคอช่างไฟฟ้าที่จังหวัดนครปฐม ขณะติดโปสเตอร์ต่อต้านการกลับมาของจอมพลถนอม</p>
+</div></div>
+<div class="step" data-count="3" data-hl="40,41,42,43,44,45,46,47,48" data-unit="วันก่อนเช้าวันที่ 6 ตุลาคม"><div class="card">
+<p class="date">ปลายกันยายน – 4 ตุลาคม 2519</p>
+<h3>การชุมนุมและข้อเรียกร้องขยายตัว</h3>
+<p>นักศึกษาและประชาชนจัดการชุมนุมคัดค้านการกลับมาของจอมพลถนอม ขณะที่ความขัดแย้งทางการเมืองทวีความรุนแรงขึ้น</p>
+<p class="note">ช่องลายเส้น = ช่วงการชุมนุมขยายตัว (วันที่โดยประมาณ)</p>
+</div></div>
+<div class="step" data-count="2" data-hl="49" data-unit="วันก่อนเช้าวันที่ 6 ตุลาคม"><div class="card">
+<p class="date">4 ตุลาคม 2519</p>
+<h3>การแสดงละครที่ถูกกล่าวหา</h3>
+<p>นักศึกษาหยุดสอบประท้วงการเสียชีวิตของสมาชิกฝ่ายต่อต้านเผด็จการ และแสดงละครจำลองเหตุการณ์ฆ่าแขวนคอช่างไฟฟ้าที่นครปฐม เพื่อประท้วงความรุนแรงที่เกิดขึ้นก่อนหน้า ต่อมาภาพและการตีความการแสดงถูกนำไปกล่าวหาและปลุกกระแสต่อต้านผู้ชุมนุม</p>
+</div></div>
+<div class="step" data-count="1" data-hl="50" data-unit="วันก่อนเช้าวันที่ 6 ตุลาคม"><div class="card">
+<p class="date">5 ตุลาคม 2519</p>
+<h3>บรรยากาศเผชิญหน้ารุนแรงขึ้น</h3>
+<p>สื่อบิดเบือนข่าวว่าการแสดงแขวนคอเป็นการหมิ่นรัชทายาท การเผยแพร่ข้อกล่าวหาและการระดมผู้คนต่อต้านนักศึกษาทำให้สถานการณ์ตึงเครียด ผู้ชุมนุมยังคงปักหลักอยู่ภายในมหาวิทยาลัยธรรมศาสตร์</p>
+<p class="note">หมายเหตุ: ลำดับเหตุการณ์ย่อเพื่อการเล่าเรื่อง ควรตรวจสอบวัน เวลา และรายละเอียดกับแหล่งข้อมูลประวัติศาสตร์ก่อนเผยแพร่</p>
+</div></div>
+<div class="step" data-count="0" data-hl="51" data-unit="วัน · เช้าวันที่ 6 ตุลาคม 2519"><div class="card">
+<p class="date">6 ตุลาคม 2519</p>
+<h3>ช่องสุดท้ายของปฏิทิน</h3>
+<p>เช้ามืดวันพุธที่ 6 ตุลาคม 2519 <a href="#ch6-2">อ่านต่อในส่วนที่ 02 →</a></p>
+</div></div>
+</div>
+</div>
+<!-- 02 -->
+<div class="opener sub" id="ch6-2">
+<p class="chno"><i>02</i>6 October 1976</p>
+<h2>เช้าวันที่ธรรมศาสตร์<em>เปลี่ยนไป</em></h2>
+<p class="lead">ในช่วงเช้ามืดวันที่ 6 ตุลาคม 2519 เจ้าหน้าที่ตำรวจและกลุ่มติดอาวุธเข้าล้อมและบุกเข้าไปในมหาวิทยาลัยธรรมศาสตร์ ซึ่งมีนักศึกษาและประชาชนชุมนุมอยู่ เกิดการยิงและการปราบปรามอย่างรุนแรง</p>
+<div class="respect"><b>อ่านเหตุการณ์ด้วยความเคารพต่อผู้ได้รับผลกระทบ</b>ภาพและคำบรรยายในส่วนนี้มีไว้เพื่อบันทึกประวัติศาสตร์ ไม่ใช่เพื่อสร้างความตื่นเต้นจากความรุนแรง</div>
+</div>
+<div class="scrolly" id="ch6b">
+<div class="graphic"><div class="stage">
+<svg aria-label="ลำดับเวลาเช้าวันที่ 6 ตุลาคม 2519 และจำนวนผู้ได้รับผลกระทบตามตัวเลขทางการ" data-f="time" id="d6" role="img" viewbox="0 0 560 560">
+<defs><pattern height="6" id="hatchG" patterntransform="rotate(45)" patternunits="userSpaceOnUse" width="6"><rect fill="#efe8da" height="6" width="6"></rect><line stroke="#b9ad9f" stroke-width="2.5" x1="0" x2="0" y1="0" y2="6"></line></pattern></defs>
+<g class="grp g-time">
+<text style="font-size:22px;font-weight:800;fill:#1f1916" x="40" y="32">วันพุธที่ 6 ตุลาคม 2519</text>
+<rect fill="#c30d2f" height="30" width="165" x="85" y="92"></rect>
+<text style="font-size:12.5px;font-weight:800;fill:#fffef5" text-anchor="middle" x="167.5" y="112">การปราบปราม 05:30–11:00</text>
+<rect fill="url(#hatchG)" height="30" width="90" x="430" y="92"></rect>
+<line stroke="#8e8379" x1="40" x2="520" y1="138" y2="138"></line>
+</g>
+<g id="d6ticks"></g>
+<g class="grp g-storm"><path d="M145,60 L160,60 L152.5,88 Z" fill="#1f1916"></path><text style="font-size:12px;font-weight:700;fill:#1f1916" text-anchor="middle" x="152.5" y="54">07:30–08:00 บุกเข้ามหาวิทยาลัย</text>
+<line stroke="#1f1916" stroke-dasharray="3 3" x1="250" x2="250" y1="122" y2="170"></line><text style="font-size:12px;font-weight:700;fill:#1f1916" x="254" y="182">11:00 ผู้ยอมจำนนถูกรวมที่สนามฟุตบอล</text></g>
+<g class="grp g-coup"><text style="font-size:12px;font-weight:700;fill:#5d544c" text-anchor="end" x="520" y="84">ช่วงเย็น · รัฐประหาร</text>
+<text style="font-size:11px;fill:#8e8379" text-anchor="end" x="520" y="205">คณะปฏิรูปการปกครองแผ่นดิน</text></g>
+<g class="grp g-people">
+<text style="font-size:15px;font-weight:800;fill:#1f1916" x="24" y="240">ตัวเลขทางการ · 1 จุด = 1 คน</text>
+<circle cx="30" cy="258" fill="#c30d2f" r="5"></circle><text style="font-size:12.5px;fill:#1f1916" x="40" y="263"><tspan font-weight="800">46</tspan> เสียชีวิต (อย่างน้อย)</text>
+<circle cx="190" cy="258" fill="#e8a8a8" r="5"></circle><text style="font-size:12.5px;fill:#1f1916" x="200" y="263"><tspan font-weight="800">167</tspan> บาดเจ็บ</text>
+<circle cx="300" cy="258" fill="#9a8f84" r="5"></circle><text style="font-size:12.5px;fill:#1f1916" x="310" y="263"><tspan font-weight="800">3,094</tspan> ถูกควบคุมตัว</text>
+<g id="d6dots"></g>
+<text style="font-size:11px;fill:#8e8379" x="24" y="548">การประมาณการอื่นระบุผู้เสียชีวิตเกิน 100 ราย · ที่มา: Wikipedia, Thai PBS Decode</text>
+</g>
+</svg>
+</div></div>
+<div class="steps vt">
+<div class="step" data-f="time"><div class="card">
+<p class="date">05:30 น.</p>
+<h3>เช้ามืด เสียงปืนเริ่มดังเข้าไปในมหาวิทยาลัย</h3>
+<p>บริเวณสนามฟุตบอลและลานโพธิ์ซึ่งเป็นพื้นที่ชุมนุมของนักศึกษาและประชาชน ถูกเจ้าหน้าที่ตำรวจและกลุ่มผู้ชุมนุมฝ่ายขวาเข้าล้อมปราบ การปราบปรามดำเนินไปราว 5 ชั่วโมงครึ่ง จนถึงประมาณ 11:00 น.</p>
+</div></div>
+<div class="step" data-f="storm"><div class="card">
+<p class="date">07:30–11:00 น.</p>
+<h3>บุกเข้ามหาวิทยาลัย</h3>
+<p>ราว 07:30–08:00 น. มีคำสั่งให้ยิงได้อย่างอิสระและกำลังบุกเข้าสู่ภายในมหาวิทยาลัย ราว 11:00 น. นักศึกษาและประชาชนที่ยอมจำนนถูกนำมารวมไว้ที่สนามฟุตบอล</p>
+<p class="note">เวลาโดยประมาณ ตามลำดับเหตุการณ์ใน Wikipedia "6 October 1976 massacre"</p>
+</div></div>
+<div class="step" data-f="people"><div class="card">
+<p class="date">ผู้ได้รับผลกระทบ</p>
+<h3>มีผู้เสียชีวิตและบาดเจ็บจำนวนมาก</h3>
+<p>ตัวเลขทางการระบุผู้เสียชีวิตอย่างน้อย 46 ราย บาดเจ็บ 167 ราย และนักศึกษากับประชาชนถูกควบคุมตัว 3,094 คน ขณะที่การประมาณการอื่นระบุผู้เสียชีวิตเกิน 100 ราย</p>
+<p>ผู้ถูกควบคุมตัวส่วนใหญ่ได้รับการปล่อยตัวโดยไม่ถูกตั้งข้อหา แกนนำ 18 คนถูกดำเนินคดี และได้รับนิรโทษกรรมในอีกราว 2 ปีต่อมา</p>
+<p class="note">ที่มา: Wikipedia "6 October 1976 massacre" · Thai PBS Decode (2565)</p>
+</div></div>
+<div class="step" data-f="coup"><div class="card">
+<p class="date">ช่วงเย็น</p>
+<h3>รัฐประหารในวันเดียวกัน</h3>
+<p>เย็นวันเดียวกัน คณะปฏิรูปการปกครองแผ่นดิน นำโดย พล.ร.อ.สงัด ชลออยู่ ยึดอำนาจ ยุติรัฐบาล ม.ร.ว.เสนีย์ ปราโมช ซึ่งมาจากการเลือกตั้งเมื่อ 4 เมษายน 2519</p>
+<p>หลังเหตุการณ์ ผู้ชุมนุมจำนวนมากถูกควบคุมตัว และรัฐบาลพลเรือนที่มาจากการเลือกตั้งสิ้นสุดลง</p>
+</div></div>
+</div>
+</div>
+<!-- 03 -->
+<div class="opener sub" id="ch6-3">
+<p class="chno"><i>03</i>Memory &amp; lessons</p>
+<h2>เมื่อพื้นที่แห่งการเรียกร้อง กลายเป็นความทรงจำของความรุนแรง</h2>
+</div>
+<div class="memory">
+<div class="memory-text">
+<p>เหตุการณ์ 6 ตุลาคม 2519 ไม่ใช่เพียงการปราบปรามนักศึกษาและประชาชน แต่เป็นบทเรียนสำคัญเกี่ยวกับความรุนแรงทางการเมือง การจำกัดเสรีภาพ และผลของการปลุกความเกลียดชังต่อผู้เห็นต่าง</p>
+<p>หลายทศวรรษผ่านไป การจดจำเหตุการณ์นี้ยังมีความสำคัญ เพื่อให้เสียงของผู้ได้รับผลกระทบไม่ถูกลบเลือน และเพื่อให้สังคมได้ทบทวนเงื่อนไขที่ทำให้ความรุนแรงเกิดขึ้น</p>
+<div class="mem-stats">
+<div><b class="num-tab">50</b><span>ปี จาก 6 ต.ค. 2519 ถึง 6 ต.ค. 2569</span></div>
+<div><b class="num-tab">15</b><span>ปีติดต่อกันที่พบหลักฐานงานรำลึกที่ธรรมศาสตร์ (2555–2569)</span></div>
+<div><b class="num-tab">0</b><span>ผู้ก่อเหตุที่ถูกดำเนินคดีหรือลงโทษ ณ ปี 2565 (Thai PBS Decode)</span></div>
+</div>
+<p style="margin-top:20px"><a class="btn" href="#ch7">ดูงานรำลึกแต่ละปีในบทที่ 7 →</a></p>
+</div>
+<div class="memory-viz">
+<p class="chart-title">50 ปีแห่งความทรงจำ<small>1 ช่อง = 1 ปี · สีแดง = ปีที่กลุ่มพบหลักฐานงานรำลึก 6 ตุลาที่ธรรมศาสตร์</small></p>
+<svg aria-label="ตาราง 51 ปี 2519 ถึง 2569 ไฮไลต์ปีที่พบงานรำลึก" id="y6" role="img" viewbox="0 0 430 330"></svg>
+<p class="note">ปีที่ไม่ได้ไฮไลต์อาจมีงานรำลึก แต่อยู่นอกช่วงข้อมูลที่กลุ่มรวบรวม</p>
+</div>
+</div>
+<div class="next"><a href="#ch7">บทที่ 7 <span>งานรำลึก</span> →</a></div>
+</section>
+<!-- ======================= CH7 ======================= -->
+<section class="chapter" id="ch7">
+<div class="opener">
+<p class="chno"><i>7</i>งานรำลึกและกิจกรรมของธรรมศาสตร์</p>
+<h2>ส่งต่อ<em>ความทรงจำ</em>ประชาธิปไตย ทุกปี</h2>
+<p class="lead">ธรรมศาสตร์จัดงานรำลึกเหตุการณ์ทางการเมืองที่สำคัญในแต่ละปี เพื่อไม่ให้ประวัติศาสตร์เลือนหาย และส่งต่อบทเรียนให้คนรุ่นหลัง เลือกเหตุการณ์ แล้วแตะจุดในแต่ละปีเพื่ออ่านรายละเอียด</p>
+<figure aria-label="ภาพประกอบ: การรำลึก" class="opener-art"><span class="art-number">ARCHIVE NOTE · 07</span><img alt="ภาพสถานที่และความทรงจำทางประวัติศาสตร์" class="chapter-photo" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/14Oct1973_Memorial_P3160012.JPG"/><figcaption>ภาพถ่ายจากคลังภาพ · Wikimedia Commons</figcaption></figure>
+<div class="rule"></div>
+</div>
+<div class="explore">
+<div class="tabs" id="c7tabs" role="tablist"></div>
+<div class="hscroll"><svg aria-label="จุดแสดงงานรำลึกแต่ละปี 2554 ถึง 2569" class="m7" id="m7" role="img" viewbox="0 0 820 290"></svg></div>
+<div class="legend"><span><i></i>พบหลักฐานกำหนดการ</span><span><i class="h"></i>จัดตามธรรมเนียม แต่ยังไม่พบรายละเอียดยืนยัน</span><span>ตัวเลขในจุด = จำนวนงานในปีนั้น</span></div>
+<div class="c7grid">
+<div class="c7card" id="c7card"></div>
+<ol class="c7list" id="c7list"></ol>
+</div>
+<div class="summary7" id="sum7"></div>
+</div>
+<div class="next"><a href="#ch8">บทที่ 8 <span>พื้นที่แสดงความคิดเห็น</span> →</a></div>
+</section>
+<!-- ======================= CH8 ======================= -->
+<section class="chapter" id="ch8">
+<div class="opener">
+<p class="chno"><i>8</i>ธรรมศาสตร์กับพื้นที่แสดงความคิดเห็นทางการเมือง</p>
+<h2>เวทีเสวนาที่<em>เพิ่มขึ้น</em> ปีต่อปี</h2>
+<p class="lead">กิจกรรมเสวนา อภิปราย และรณรงค์ทางการเมืองที่จัดขึ้นในมหาวิทยาลัย แสดงว่าธรรมศาสตร์ยังเป็นพื้นที่แลกเปลี่ยนความคิดเห็นและถกเถียงประเด็นสาธารณะ</p>
+<figure aria-label="ภาพประกอบ: เวทีแลกเปลี่ยน" class="opener-art"><span class="art-number">ARCHIVE NOTE · 08</span><img alt="ภาพสถานการณ์จริงในเหตุการณ์ 6 ตุลาคม 2519" class="chapter-photo" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Thammasat_University_Massacre_1976-10-06_(a22).jpg"/><figcaption>ภาพถ่ายจากคลังภาพ · Wikimedia Commons</figcaption></figure>
+<div class="rule"></div>
+</div>
+<div class="scrolly">
+<div class="graphic"><div class="stage col">
+<p class="chart-title">จำนวนกิจกรรมเสวนาและเปิดพื้นที่แสดงความคิดเห็นทางการเมืองที่ตรวจสอบพบ พ.ศ. 2561–2569<small>นับกิจกรรมที่มีหลักฐานระบุชื่อและปีจัดงานได้ · แตะแท่งเพื่อข้ามไปปีนั้น · 2569* ข้อมูลถึง 24 ต.ค.</small></p>
+<svg aria-label="กราฟแท่งจำนวนกิจกรรมรายปี" id="bars8" role="img"></svg>
+</div></div>
+<div class="steps" id="steps8"></div>
+</div>
+<div class="next"><a href="#ch9">บทที่ 9 <span>องค์กรนักศึกษา</span> →</a></div>
+</section>
+<!-- ======================= CH9 ======================= -->
+<section class="chapter" id="ch9">
+<div class="opener">
+<p class="chno"><i>9</i>องค์กรนักศึกษาธรรมศาสตร์กับการสืบทอดอุดมการณ์ประชาธิปไตย</p>
+<h2>อย่างน้อย <em>36 รอบ</em> ของแถลงการณ์และข้อเรียกร้อง</h2>
+<p class="lead">อมธ. สืบทอดอุดมการณ์ประชาธิปไตยผ่านการเป็นตัวแทนเสียงนักศึกษา ตั้งแต่การเรียกร้องให้คุ้มครองสิทธิและเสรีภาพ การผลักดันสวัสดิการ ไปจนถึงการแสดงจุดยืนต่อประเด็นการเมืองระดับประเทศ</p>
+<figure aria-label="ภาพประกอบ: องค์กรนักศึกษา" class="opener-art"><img alt="ภาพโปรไฟล์ปัจจุบันขององค์การนักศึกษามหาวิทยาลัยธรรมศาสตร์ (อมธ. / TUSU) จากช่องทางทางการ" class="chapter-photo" loading="eager" src="https://ugc.production.linktr.ee/f79933a4-4e5c-408c-9d81-8e3e636924f1_IMG-1486.jpeg"/><figcaption>องค์การนักศึกษามหาวิทยาลัยธรรมศาสตร์ (อมธ. / TUSU) · ภาพจาก Linktree ทางการ</figcaption></figure>
+<div class="rule"></div>
+</div>
+<div class="scrolly">
+<div class="graphic"><div class="stage col">
+<p class="chart-title">จำนวนรอบแถลงการณ์และข้อเรียกร้องทางการเมืองขององค์กรนักศึกษาที่เกี่ยวข้องกับธรรมศาสตร์ที่ตรวจสอบพบ พ.ศ. 2562–2569<small>ข้อมูลรวบรวมจากหลักฐานสาธารณะ ไม่ใช่ยอดรวมอย่างเป็นทางการ · 2569* ข้อมูลถึง 26 ตุลาคม</small></p>
+<svg aria-label="กราฟแท่งจำนวนรอบแถลงการณ์รายปี" id="bars9" role="img"></svg>
+</div></div>
+<div class="steps" id="steps9"></div>
+</div>
+<div class="next"><a href="#ch10">บทที่ 10 <span>ห้องเรียนประชาธิปไตย</span> →</a></div>
+</section>
+<!-- ======================= CH10 ======================= -->
+<section class="chapter" id="ch10">
+<div class="opener">
+<p class="chno"><i>10</i>ธรรมศาสตร์ในวันนี้</p>
+<h2>ห้องเรียนกับการเรียนรู้<em>ประชาธิปไตย</em></h2>
+<p class="lead">ธรรมศาสตร์ส่งเสริมการเรียนรู้ด้านพลเมืองและสังคมผ่านรายวิชาศึกษาทั่วไป และรายวิชาเฉพาะทางในหลายคณะ ซึ่งเชื่อมโยงกับการเมือง กฎหมาย สิทธิมนุษยชน ความเหลื่อมล้ำ และการเคลื่อนไหวทางสังคม</p>
+<figure aria-label="ภาพประกอบ: ห้องเรียนประชาธิปไตย" class="opener-art"><span class="art-number">ARCHIVE NOTE · 10</span><img alt="ภาพสถานที่และความทรงจำทางประวัติศาสตร์" class="chapter-photo" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Thammasat_University_Tha_Phra_Chan_Campus_01.JPG"/><figcaption>ภาพถ่ายจากคลังภาพ · Wikimedia Commons</figcaption></figure>
+<div class="rule"></div>
+</div>
+<div class="scrolly">
+<div class="graphic"><div class="stage">
+<svg aria-label="แผนภาพ Sankey จากสังกัดรายวิชา สู่รายวิชา สู่ 5 มิติของประชาธิปไตย" class="sk mute" id="sk" role="img" viewbox="0 0 790 724"></svg>
+</div></div>
+<div class="steps">
+<div class="step" data-sk="none"><div class="card">
+<div class="tag"><span class="n">10.1</span>3 คอลัมน์</div>
+<h3>สังกัดรายวิชา → รายวิชา → มิติของประชาธิปไตย</h3>
+<p>เมื่อพูดถึงการเรียนเรื่องการเมืองและประชาธิปไตย หลายคนอาจนึกถึงนิติศาสตร์หรือรัฐศาสตร์เป็นอันดับแรก แผนภาพนี้ไล่จากสังกัด (ซ้าย) ผ่านรายวิชา (กลาง) ไปสู่ 5 มิติ (ขวา)</p>
+</div></div>
+<div class="step" data-sk="fac:pol,law"><div class="card">
+<div class="tag"><span class="n">10.2</span>รัฐศาสตร์ + นิติศาสตร์</div>
+<h3>สองคณะนี้สอนเรื่องรัฐธรรมนูญ กฎหมายมหาชน และการเมืองการปกครองโดยตรง</h3>
+<p>รัฐศาสตร์ 4 วิชา และนิติศาสตร์ 6 วิชา รวม 10 จาก 28 วิชา</p>
+</div></div>
+<div class="step" data-sk="fac:ge,pbic,soc,sw,sgs,eco,jc"><div class="card">
+<div class="tag"><span class="n">10.3</span>อีก 18 วิชา</div>
+<h3>แต่ความรู้นี้ยังมาจากคณะอื่น วิทยาลัยนานาชาติ และวิชาที่ทุกคนต้องเรียน</h3>
+<p>TU100 พลเมืองกับการลงมือแก้ปัญหา เป็นวิชาศึกษาทั่วไปที่นักศึกษาทุกคนต้องเรียน ส่วน PBIC มีวิชาว่าด้วยปรีดี พนมยงค์ กับประวัติศาสตร์ไทยร่วมสมัย</p>
+</div></div>
+<div class="step" data-sk="dim:3"><div class="card">
+<div class="tag"><span class="n">10.4</span>มิติ 03</div>
+<h3>แม้แต่เรื่องสิทธิและกฎหมาย ก็มาจากอย่างน้อย 4 สังกัด</h3>
+<p>10 วิชาในมิติสิทธิและกฎหมายมาจากนิติศาสตร์ สังคมวิทยาฯ สังคมสงเคราะห์ฯ และ SGS ไม่ใช่แค่นิติศาสตร์</p>
+</div></div>
+<div class="step" data-sk="all"><div class="card">
+<div class="tag"><span class="n">10.5</span>ภาพรวม</div>
+<h3>อย่างน้อย 28 รายวิชา ครอบคลุม 5 มิติของประชาธิปไตย</h3>
+<p>การเรียนรู้เรื่องประชาธิปไตยไม่ได้จำกัดอยู่เฉพาะในคณะรัฐศาสตร์หรือนิติศาสตร์ แตะชื่อมิติทางขวาของแผนภาพเพื่อดูเฉพาะมิตินั้น หรือเปิดแผนที่หลักสูตรด้านล่าง</p>
+</div></div>
+</div>
+</div>
+<div class="cmap">
+<div class="cmap-head"><b>การเรียนรู้ประชาธิปไตย</b><span>ผ่านรายวิชาของธรรมศาสตร์ · แตะแต่ละมิติเพื่อดูรายชื่อวิชา</span></div>
+<div class="cmap-grid" id="cmap"></div>
+</div>
+</section>
+<!-- ======================= END ======================= -->
+<section class="ending" id="end">
+<div class="ending-in">
+<div>
+<h2>จากบ่อน้ำของราษฎร สู่ห้องเรียนของพลเมือง</h2>
+<p>92 ปีของธรรมศาสตร์ ชื่ออาจถูกตัดคำว่า "การเมือง" ออก แต่พื้นที่ ความทรงจำ องค์กรนักศึกษา และห้องเรียน ยังคงเล่าเรื่องการเมืองและประชาธิปไตยต่อไป</p>
+<p class="fine">Data Scrollytelling · รายวิชา Data Visualization (BI304) · ข้อมูล ณ ตุลาคม 2569</p>
+</div>
+<div>
+<h3>ที่มาข้อมูล</h3>
+<ul>
+<li>สถาบันปรีดี พนมยงค์ และเอกสารประวัติมหาวิทยาลัยธรรมศาสตร์ (บทที่ 1–2, 7)</li>
+<li>WAY Magazine, "อุดมการณ์ธรรมศาสตร์ในยุคสมัยที่ผันแปร จุดสิ้นสุดตลาดวิชาและภาพจำ 'ปรีดี พนมยงค์' ที่ถูกลบ" (ตัวเลขผู้สมัครและนักศึกษา บทที่ 3)</li>
+<li>Thai PBS "รำลึก 50 ปี 14 ตุลา 2516" · มติชน · คณะรัฐมนตรีไทย พ.ศ. 2516–2519 (e-JODIL) (บทที่ 5)</li>
+<li>Wikipedia "6 October 1976 massacre" · Thai PBS Decode "6 ตุลา บาดแผล" (บทที่ 6)</li>
+<li>Thai PBS, Thai PBS NOW, BBC News ไทย, iLaw, พิพิธภัณฑ์สามัญชน (บทที่ 5, 9)</li>
+<li>ไทยรัฐ, มติชน, มติชนสุดสัปดาห์, ข่าวสด, กรุงเทพธุรกิจ, ประชาชาติธุรกิจ, Sanook (บทที่ 9)</li>
+<li>ThaiPublica, The Active, The Momentum, ศูนย์ทนายความเพื่อสิทธิมนุษยชน (บทที่ 7, 9)</li>
+<li>รายละเอียดรายวิชาของคณะและวิทยาลัยในมหาวิทยาลัยธรรมศาสตร์ (บทที่ 10)</li>
+</ul>
+<p class="fine">ตัวเลขบทที่ 8–9 รวบรวมจากหลักฐานสาธารณะที่กลุ่มค้นพบ จึงเป็นจำนวนขั้นต่ำ ไม่ใช่สถิติทางการ แผนผังบทที่ 4–5 เป็นแผนผังเชิงสัญลักษณ์</p>
+</div>
+</div>
+</section>
+</main>
+<script>
+(()=>{
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const NS='http://www.w3.org/2000/svg';
+function S(tag,attrs,parent){const e=document.createElementNS(NS,tag);if(attrs)for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function T(parent,x,y,txt,attrs){const e=S('text',Object.assign({x,y},attrs||{}),parent);e.textContent=txt;return e;}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- scrolly engine ---------- */
+const chapters=[];
+function reg(id,render){const sec=document.getElementById(id);const steps=$$('.step',sec);const ch={sec,steps,render,cur:-1};chapters.push(ch);setStep(ch,0);return ch;}
+function setStep(ch,i){if(ch.cur===i)return;ch.cur=i;ch.steps.forEach((s,k)=>s.classList.toggle('active',k===i));ch.render(i,ch.steps[i].dataset);}
+function scenes(sec,key){$$('.scene',sec).forEach(sc=>sc.classList.toggle('on',sc.dataset.s===key));}
+const mq=matchMedia('(max-width:860px)');
+let ticking=false;
+function onScroll(){ticking=false;const line=innerHeight*(mq.matches?.8:.6);
+  for(const ch of chapters){const r=ch.sec.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)continue;let idx=0;ch.steps.forEach((s,k)=>{if(s.getBoundingClientRect().top<line)idx=k;});setStep(ch,idx);}
+  const h=document.documentElement.scrollHeight-innerHeight;$('#progress').style.width=(h>0?scrollY/h*100:0)+'%';
+  let cur='';for(let k=1;k<=10;k++){const s=document.getElementById('ch'+k);if(s.getBoundingClientRect().top<innerHeight*.4)cur='ch'+k;}
+  $$('#chips a').forEach(a=>{const on=a.getAttribute('href')==='#'+cur;if(on!==a.classList.contains('on')){a.classList.toggle('on',on);if(on){const c=$('#chips');c.scrollLeft=a.offsetLeft-c.clientWidth/2;}}});
+}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+addEventListener('resize',onScroll);
+
+/* ---------- CH1 ---------- */
+const C1=[{d:'24 มิ.ย. 2475',day:0,p:.10},{d:'17 มี.ค. 2476',day:631,p:.35},{d:'11 เม.ย. 2477',day:656,p:.65},{d:'27 มิ.ย. 2477',day:733,p:1}];
+const tl=x=>30+300*x/733;
+C1.forEach((s,k)=>S('circle',{cx:tl(s.day),cy:510,r:6,class:'c1dot',id:'c1d'+k},$('#c1tl')));
+reg('ch1',i=>{const s=C1[i];$('#c1water').style.transform=`scaleY(${s.p})`;$('#c1date').textContent=s.d;$('#c1lvl').textContent=`ระดับน้ำ ${Math.round(s.p*100)}%`;
+  $('#c1prog').setAttribute('x2',tl(s.day));C1.forEach((_,k)=>$('#c1d'+k).classList.toggle('on',k<=i));
+  const dl=$('#c1day');dl.textContent=s.day===0?'วันที่ 0':(s.day===733?'วันที่ 733 · เปิดทำการ':'วันที่ '+s.day);dl.setAttribute('x',tl(s.day));dl.setAttribute('text-anchor',s.day>600?'end':'start');});
+
+/* ---------- CH2 ---------- */
+const dg=$('#c2dots');
+for(let k=0;k<710;k++){const c=S('circle',{cx:22+(k%30)*19.3,cy:10+Math.floor(k/30)*19.3,r:6.6},dg);c.style.transitionDelay=(k*1.6)+'ms';if(k===709)c.setAttribute('class','part');}
+reg('ch2',(i,ds)=>scenes($('#ch2'),ds.scene));
+
+/* ---------- CH3 ---------- */
+reg('ch3',(i,ds)=>{scenes($('#ch3'),ds.scene);$('#c3stage [data-s="name"]').classList.toggle('cut',!!ds.cut);});
+
+/* ---------- CH4 ---------- */
+const rays=$('#rays');for(let k=0;k<16;k++){const a=k/16*Math.PI*2;S('line',{class:'ray',x1:300+Math.cos(a)*54,y1:150+Math.sin(a)*54,x2:300+Math.cos(a)*(k%2?64:72),y2:150+Math.sin(a)*(k%2?64:72)},rays);}
+let seed=11;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const crowd=$('#crowd4');for(let k=0;k<260;k++)S('circle',{cx:(129+rnd()*162).toFixed(1),cy:(266+rnd()*104).toFixed(1),r:(1.6+rnd()*1.5).toFixed(1)},crowd);
+const R4=['r4a','r4b','r4c'].map(id=>{const p=document.getElementById(id);const L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L;return [p,L];});
+const order4={intro:0,dome:1,field:2,lanpho:3,aud:4};
+const ch4=reg('ch4',(i,ds)=>{const f=ds.focus;$('#map4').dataset.focus=f;const n=order4[f];R4.forEach(([p,L],k)=>p.style.strokeDashoffset=n>=k+2?0:L);});
+$$('#map4 .place').forEach(g=>{const go=()=>{const st=ch4.steps.find(s=>s.dataset.focus===g.dataset.go);if(st)st.scrollIntoView({behavior:'smooth',block:'center'});};g.addEventListener('click',go);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});});
+
+/* ---------- CH5 ---------- */
+const R5=['r5a','r5b'].map(id=>{const p=document.getElementById(id);const L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L;return [p,L];});
+const C5=[['14 ตุลาคม 2516','เลื่อนเพื่อเดินตามขบวน'],['จากรั้วมหาวิทยาลัย','สู่ถนนของประชาชน'],['9 ต.ค. 2516','01 · มหาวิทยาลัยธรรมศาสตร์'],['13 ต.ค. 2516','02 · ถนนราชดำเนิน'],['13–14 ต.ค. 2516','03 · อนุสาวรีย์ประชาธิปไตย'],['ตุลาคม 2516','ข้อความบนป้ายประวัติศาสตร์'],['6 ตุลาคม 2519','3 ปีต่อมา']];
+reg('ch5a',i=>{const m=$('#map5');m.dataset.stage=i;$('#c5date').textContent=C5[i][0];$('#c5sub').textContent=C5[i][1];
+  R5[0][0].style.strokeDashoffset=i>=3?0:R5[0][1];R5[1][0].style.strokeDashoffset=i>=4?0:R5[1][1];
+  [['p5a',2],['p5b',3],['p5c',4]].forEach(([id,s])=>{const g=document.getElementById(id);g.classList.toggle('on',i>=s||i<2);g.classList.toggle('cur',i===s);});});
+
+/* ---------- CH6 calendar ---------- */
+const g6=$('#c6grid');const days=['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.'];
+days.forEach((d,c)=>T(g6,40+c*54+24,100,d,{class:'t-sm','text-anchor':'middle'}));
+const EV6=[0,34,35,39,49,50,51];
+const cells6=[];
+for(let i=0;i<52;i++){const r=Math.floor(i/7),c=i%7;const x=40+c*54,y=112+r*54;
+  let dn,mo;if(i<16){dn=16+i;mo='ส.ค.';}else if(i<46){dn=i-15;mo='ก.ย.';}else{dn=i-45;mo='ต.ค.';}
+  const g=S('g',{class:'cell'+(EV6.includes(i)?' ev':'')+(i>=40&&i<=48?' range':'')+(i===51?' last':'')},g6);
+  S('rect',{x,y,width:48,height:48,rx:6},g);T(g,x+24,y+33,dn);
+  if(dn===1||i===0)T(g,x+5,y+13,mo,{class:'mo'});
+  cells6.push(g);}
+reg('ch6a',(i,ds)=>{const hl=ds.hl?ds.hl.split(',').map(Number):[];cells6.forEach((g,k)=>g.classList.toggle('hl',hl.includes(k)));$('#c6count').textContent=ds.count;$('#c6unit').textContent=ds.unit;});
+
+/* ---------- CH5b 1,088 days ---------- */
+const T5=['14 ต.ค. 2516','15 ต.ค. 2516','2516 – 2519','ส.ค. – ก.ย. 2519','6 ต.ค. 2519'];
+reg('ch5b',i=>{$('#t5').dataset.st=i;$('#t5date').textContent=T5[i];});
+
+/* ---------- CH6b morning ---------- */
+const tk=$('#d6ticks');[4,6,8,10,12,14,16,18,20].forEach(h=>{const x=40+(h-4)*30;S('line',{x1:x,x2:x,y1:134,y2:142,stroke:'#8e8379'},tk);T(tk,x,156,String(h).padStart(2,'0')+':00',{class:'axis','text-anchor':'middle',style:'font-size:11px'});});
+const dd=$('#d6dots');const PPL=[[46,'#c30d2f'],[167,'#e8a8a8'],[3094,'#9a8f84']];let pk=0;
+PPL.forEach(([n,c])=>{for(let q=0;q<n;q++,pk++)S('circle',{cx:(27+(pk%92)*5.6).toFixed(1),cy:(286+Math.floor(pk/92)*6.6).toFixed(1),r:2.2,fill:c},dd);});
+reg('ch6b',(i,ds)=>{$('#d6').dataset.f=ds.f;});
+
+/* ---------- CH6c 50 years ---------- */
+const y6=$('#y6');for(let k=0;k<51;k++){const yr=2519+k;const r=Math.floor(k/10),c=k%10;const x=10+c*42,y=10+r*52;
+  const g=S('g',{class:'ycell'+(yr===2519?' first':'')+(yr>=2555?' on':'')+(yr===2569?' fifty':'')},y6);S('rect',{x,y,width:38,height:44,rx:4},g);T(g,x+19,y+27,String(yr));}
+T(y6,62,312+8,'2569 · ครบ 50 ปี',{style:'font-size:13px;font-weight:800;fill:#c30d2f'});
+
+/* ---------- CH7 ---------- */
+const SER7=[
+ {k:'oct6',name:'6 ตุลาคม 2519',tab:'รำลึก 6 ตุลา',items:[
+  [2555,'6 ต.ค. 2555','รำลึก 36 ปี 6 ตุลา "ประชาธิปไตยประชาชน" ทำบุญตักบาตรพระสงฆ์ 19 รูป และวางพวงมาลาที่ประติมานุสรณ์ 6 ตุลาคม เพื่อรำลึกผู้เสียชีวิตและถ่ายทอดบทเรียนทางประวัติศาสตร์'],
+  [2556,'6 ต.ค. 2556','รำลึก 37 ปี มีพิธีทำบุญ วางพวงมาลา ไว้อาลัยวีรชน พร้อมประกาศเจตนารมณ์สืบสานอุดมการณ์ประชาธิปไตย'],
+  [2557,'6 ต.ค. 2557','รำลึก 38 ปี ญาติวีรชนและเครือข่ายร่วมทำบุญ เปิดผ้าขาวที่คลุมประติมานุสรณ์เพื่อสื่อถึงการเปิดเผยประวัติศาสตร์ที่ถูกปกคลุม ก่อนวางพวงมาลาและกล่าวสดุดี'],
+  [2558,'6 ต.ค. 2558','รำลึก 39 ปี ตักบาตรพระสงฆ์ 19 รูป วางพวงมาลา และไว้อาลัยจากญาติวีรชนกับองค์กรต่าง ๆ'],
+  [2559,'6–8 ต.ค. 2559','รำลึก 40 ปี "จารึกไว้ในใจชน" แสดงนาฏกรรมและเคลื่อนขบวนผ่านลานโพธิ์และสนามฟุตบอล ก่อนทำบุญ วางพวงมาลา จุดเทียนรำลึก และจัดปาฐกถาและกิจกรรมต่อเนื่องหลายวัน'],
+  [2560,'6 ต.ค. 2560','รำลึก 41 ปี ตักบาตรพระสงฆ์ 19 รูป วางพวงมาลา กล่าวไว้อาลัย และฉายภาพยนตร์สารคดีที่เกี่ยวข้อง'],
+  [2561,'6 ต.ค. 2561','รำลึก 42 ปี ทำบุญ วางพวงมาลาและดอกไม้ วงเสวนา "เหตุการณ์ 6 ตุลา กับอาจารย์ป๋วย"'],
+  [2562,'6 ต.ค. 2562','รำลึก 43 ปี พิธีไว้อาลัย วางพวงมาลา นิทรรศการ "ประจักษ์ / พยาน" และเริ่มมอบรางวัล "จารุพงษ์ ทองสินธุ์ เพื่อประชาธิปไตย" แก่จ่านิว'],
+  [2563,'6 ต.ค. 2563','รำลึก 44 ปี ทำบุญ วางพวงมาลาและดอกไม้ ยืนไว้อาลัย และมอบรางวัล "จารุพงษ์ ทองสินธุ์ เพื่อประชาธิปไตย"'],
+  [2564,'6 ต.ค. 2564','รำลึก 45 ปี มีข้อถกเถียงเรื่องการจัดงานในมหาวิทยาลัยกับรูปแบบออนไลน์ และมีกิจกรรมเชิงสัญลักษณ์ในธรรมศาสตร์ ท่าพระจันทร์ เช่น หุ่นฟางสื่อถึงความรุนแรง'],
+  [2564,'10 ต.ค. 2564','พิธีรำลึก 45 ปีอีกครั้ง ตักบาตรพระสงฆ์ 9 รูป วางพวงมาลาและดอกไม้ อ่านรายชื่อผู้เสียชีวิต และปาฐกถาเกี่ยวกับความยุติธรรมและการไม่ลืมความรุนแรงในอดีต'],
+  [2565,'6 ต.ค. 2565','รำลึก 46 ปี ตักบาตรพระสงฆ์ 19 รูป วางพวงมาลา ปาฐกถา "ฆ่าอย่างไรก็ไม่ตาย: คนรุ่นใหม่ในความขัดแย้งทางการเมืองไทยร่วมสมัย" และมอบรางวัล "จารุพงษ์ ทองสินธุ์ เพื่อประชาธิปไตย" แก่วาฤทธิ์ สมน้อย'],
+  [2566,'6 ต.ค. 2566','รำลึก 47 ปี ตักบาตร อ่านรายชื่อผู้เสียชีวิต วางพวงมาลาและช่อดอกไม้ และนิทรรศการ "112 มรดก 6 ตุลา" ที่ศูนย์รังสิต (1–14 ต.ค.)'],
+  [2567,'6 ต.ค. 2567','รำลึก 48 ปี ตักบาตรพระสงฆ์ 19 รูป วางดอกไม้ ปาฐกถา "การสถาปนา 6 ตุลาฯ ในสังคมไทย" และกิจกรรมนักศึกษา เช่น Walking Tour การแสดงเชิงสัญลักษณ์ เทียนรำลึก'],
+  [2568,'6 ต.ค. 2568','รำลึก 49 ปี ตักบาตรพระสงฆ์ 19 รูป อ่านรายชื่อวีรชน ยืนไว้อาลัย วางพวงมาลา ปาฐกถา "จากลานโพธิ์ไปสู่รัฐธรรมนูญใหม่" และกิจกรรมตลอดวันโดยองค์การนักศึกษาและสภานักศึกษา'],
+  [2569,'6 ต.ค. 2569','รำลึก 50 ปี จัดที่สวนประติมากรรมประวัติศาสตร์ "ธรรมศาสตร์กับการต่อสู้เพื่อประชาธิปไตย" เพื่อรำลึกผู้เสียชีวิตและผู้ได้รับผลกระทบ ทบทวนบทเรียน และส่งต่อคุณค่าการเคารพความแตกต่างและศักดิ์ศรีความเป็นมนุษย์']]},
+ {k:'peace',name:'วันสันติภาพไทย · เสรีไทย',tab:'วันสันติภาพไทย',items:[
+  [2554,'16 ส.ค. 2554','งานวันสันติภาพไทยครั้งแรกของธรรมศาสตร์ จุดเริ่มต้นของกิจกรรมร่วมกับสถาบันปรีดี พนมยงค์และเครือข่าย'],
+  [2555,'16 ส.ค. 2555','จัดต่อเนื่องตามธรรมเนียมประจำปี แต่ยังไม่พบกำหนดการและรายละเอียดรายปีที่ยืนยันได้',1],
+  [2556,'16 ส.ค. 2556','จัดต่อเนื่องตามธรรมเนียมประจำปี แต่ยังไม่พบกำหนดการและรายละเอียดรายปีที่ยืนยันได้',1],
+  [2557,'16 ส.ค. 2557','จัดต่อเนื่องตามธรรมเนียมประจำปี แต่ยังไม่พบกำหนดการและรายละเอียดรายปีที่ยืนยันได้',1],
+  [2558,'16 ส.ค. 2558','จัดต่อเนื่องตามธรรมเนียมประจำปี แต่ยังไม่พบกำหนดการและรายละเอียดรายปีที่ยืนยันได้',1],
+  [2559,'16 ส.ค. 2559','"ประวัติศาสตร์มีชีวิต 71 ปีวันสันติภาพไทย" พิธีปักธงสันติภาพ ธงเสรีภาพ และธงเอกราชไทย พิธีทางศาสนา ประกวดวาดภาพ และเสวนาเรื่องสงครามโลกครั้งที่ 2 และขบวนการเสรีไทย'],
+  [2560,'16 ส.ค. 2560','รำลึก 72 ปี รำลึกคุณูปการของเสรีไทย ปาฐกถาพิเศษ "พระบรมวงศานุวงศ์กับขบวนการเสรีไทย"'],
+  [2561,'16 ส.ค. 2561','รำลึก 73 ปี เชิดชูบทบาทเสรีไทยและการปกป้องเอกราช เผยแพร่ประวัติศาสตร์เสรีไทยผ่านกิจกรรมและสื่อ'],
+  [2562,'16 ส.ค. 2562','รำลึก 74 ปี พิธีวางช่อดอกไม้ มีผู้แทนรัฐบาล คณะทูต ทายาทเสรีไทย และประชาคมธรรมศาสตร์ร่วมงาน'],
+  [2563,'16 ส.ค. 2563','รำลึก 75 ปีวันสันติภาพไทย และ 120 ปีชาตกาลปรีดี พนมยงค์'],
+  [2564,'16 ส.ค. 2564','รำลึก 76 ปี จัดออนไลน์เพราะโควิด-19 เสวนา PRIDI Talks #12 เรื่องหลักเอกราชกับการต่างประเทศและข้อเท็จจริงเกี่ยวกับขบวนการเสรีไทย'],
+  [2565,'16 ส.ค. 2565','รำลึก 77 ปี วางช่อดอกไม้ เสวนา "ความคิดสันติภาพของปรีดี พนมยงค์ กับสันติภาพของโลกในปัจจุบัน" และนำเสนองานวิจัยเกี่ยวกับเสรีไทย'],
+  [2566,'16 ส.ค. 2566','รำลึก 78 ปี วางช่อดอกไม้ และมอบหนังสือที่ระลึกเกี่ยวกับประวัติศาสตร์ไทยช่วงสงคราม'],
+  [2567,'16 ส.ค. 2567','รำลึก 79 ปี สดุดีบทบาทเสรีไทยในการปกป้องเอกราชและอธิปไตย มีทายาทเสรีไทยและผู้แทนคณะทูตร่วมงาน'],
+  [2568,'16 ส.ค. 2568','รำลึก 80 ปี วาระครบรอบ 80 ปีการประกาศสันติภาพ รำลึกเสรีไทยและบทบาทปรีดีในการช่วยให้ไทยหลีกเลี่ยงสถานะประเทศผู้แพ้สงคราม'],
+  [2569,'16 ส.ค. 2569','รำลึก 81 ปี วางช่อดอกไม้ กล่าวรำลึกโดยตัวแทนนักศึกษา และปาฐกถาพิเศษ เพื่อส่งต่อความทรงจำเรื่องเอกราชและสันติภาพสู่คนรุ่นใหม่']]},
+ {k:'jun24',name:'24 มิถุนายน 2475',tab:'วันเปลี่ยนแปลงการปกครอง',items:[
+  [2563,'24 มิ.ย. 2563','รำลึก 88 ปีอภิวัฒน์สยาม เสวนาออนไลน์ "88 ปี 2475 ความทรงจำของสามัญชน" จัดร่วมโดยสถาบันปรีดีฯ คณะรัฐศาสตร์ และมูลนิธิโครงการตำราสังคมศาสตร์และมนุษยศาสตร์'],
+  [2565,'24 มิ.ย. 2565','รำลึก 90 ปี PRIDI Talks #16 "90 ปีแห่งการอภิวัฒน์สยาม: อุดมการณ์เพื่อชาติและราษฎรไทย"'],
+  [2566,'24 มิ.ย. 2566','รำลึก 91 ปี PRIDI Talks #21 "เราจะรักษาชัยชนะก้าวแรกของประชาชน (และก้าวต่อ ๆ ไป) ไว้ได้อย่างไร?"'],
+  [2567,'24 มิ.ย. 2567','รำลึก 92 ปี PRIDI Talks #26 "เอกภาพขบวนการประชาธิปไตย สู่ประชาธิปไตยสมบูรณ์: จากบทเรียน 2475 สู่อนาคต" ที่หอประชุมศรีบูรพา ท่าพระจันทร์'],
+  [2568,'24 มิ.ย. 2568','รำลึก 93 ปี PRIDI Talks #31 "เอกราษฎร์และอธิปไตย ยุคประชาธิปไตย 2475 ถูกท้าทาย" ที่คณะรัฐศาสตร์']]},
+ {k:'oct14',name:'14 ตุลาคม 2516',tab:'รำลึก 14 ตุลา',items:[
+  [2556,'8 ต.ค. 2556','รำลึกเหตุการณ์ 8 ต.ค. 2516 ที่ท่าพระจันทร์ วันที่มหาวิทยาลัยประกาศเลื่อนสอบ ซึ่งเปิดโอกาสให้นักศึกษาร่วมชุมนุมก่อน 14 ต.ค. 2516'],
+  [2556,'14 ต.ค. 2556','รำลึก 40 ปี 14 ตุลา กิจกรรมรำลึกและเวทีอภิปรายที่หอประชุมใหญ่ ท่าพระจันทร์'],
+  [2566,'ต.ค. 2566','"ธรรมศาสตร์ Walking Tour" วาระ 50 ปี 14 ตุลา เชื่อมความทรงจำการเคลื่อนไหวปี 2516 กับเหตุการณ์ 6 ตุลา 2519 ผ่านพื้นที่ประวัติศาสตร์ของมหาวิทยาลัย (ยังไม่ยืนยันวันที่แน่นอน)'],
+  [2566,'14 ต.ค. 2566','คอนเสิร์ต "50 ปี 50 เพลง เล่าบรรเลง 14 ตุลา" ที่หอประชุมใหญ่ ท่าพระจันทร์ รายได้มอบให้มูลนิธิ 14 ตุลาเพื่อปรับปรุงอนุสรณ์สถาน'],
+  [2566,'19 ต.ค. 2566','Media Forum #20 "50 ปี 14 ตุลา 2516 กับสิทธิการสื่อสารในสังคมไทย" ที่วิทยาลัยนวัตกรรม ท่าพระจันทร์']]}
+];
+const Y0=2554,NY=16;const m7=$('#m7');const st7={r:0,y:2569};
+const tabs=$('#c7tabs');
+SER7.forEach((s,r)=>{const b=document.createElement('button');b.type='button';b.textContent=s.tab;b.setAttribute('role','tab');b.addEventListener('click',()=>{st7.r=r;st7.y=s.items[s.items.length-1][0];draw7();});tabs.appendChild(b);});
+for(let k=0;k<NY;k++)T(m7,190+k*39,26,String(Y0+k),{class:'axis','text-anchor':'middle',style:'font-size:11px'});
+const rows7=SER7.map((s,r)=>{const y=66+r*58;const g=S('g',{class:'row'},m7);S('rect',{class:'row-bg',x:0,y:y-27,width:820,height:54,rx:6},g);T(g,168,y-2,s.tab,{class:'rlabel','text-anchor':'end'});
+  const yrs=[...new Set(s.items.map(it=>it[0]))];T(g,168,y+15,`${s.items.length} งาน · ${yrs.length} ปี`,{class:'t-sm','text-anchor':'end'});
+  S('line',{x1:182,x2:784,y1:y,y2:y,stroke:'#e7dfcd'},g);
+  const dots={};yrs.forEach(yr=>{const its=s.items.filter(it=>it[0]===yr);const tent=its.every(it=>it[3]);const cx=190+(yr-Y0)*39;const rr=its.length>1?12:8;
+    const d=S('g',{class:'dot'+(tent?' tent':''),tabindex:0,role:'button','aria-label':`${s.tab} ${yr}`},g);S('circle',{class:'sel',cx,cy:y,r:rr+5},d);S('circle',{class:'m',cx,cy:y,r:rr},d);if(its.length>1)T(d,cx,y+4,its.length);
+    const pick=()=>{st7.r=r;st7.y=yr;draw7();};d.addEventListener('click',pick);d.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();}});dots[yr]=d;});
+  return {g,dots};});
+function draw7(){const s=SER7[st7.r];$$('button',tabs).forEach((b,k)=>{b.classList.toggle('on',k===st7.r);b.setAttribute('aria-selected',k===st7.r);});
+  rows7.forEach((row,r)=>{row.g.classList.toggle('on',r===st7.r);for(const yr in row.dots)row.dots[yr].classList.toggle('on',r===st7.r&&+yr===st7.y);});
+  const its=s.items.filter(it=>it[0]===st7.y);
+  $('#c7card').innerHTML=`<div class="yr num-tab">${st7.y}</div><div class="sr">${esc(s.name)} · ครบรอบ ${s.k==='peace'?st7.y-2488:s.k==='jun24'?st7.y-2475:s.k==='oct14'?st7.y-2516:st7.y-2519} ปี</div>`+its.map(it=>`<div class="ev"><b>${esc(it[1])}</b><p>${esc(it[2])}</p></div>`).join('');
+  const L=$('#c7list');L.innerHTML='';s.items.forEach(it=>{const li=document.createElement('li');const b=document.createElement('button');b.type='button';if(it[0]===st7.y)b.classList.add('on');b.innerHTML=`<b>${esc(it[1])}</b><span>${esc(it[2])}</span>`;b.addEventListener('click',()=>{st7.y=it[0];draw7();});li.appendChild(b);L.appendChild(li);});
+  const on=$('button.on',L);if(on)L.scrollTop=on.offsetTop-L.offsetTop-8;}
+draw7();
+$('#sum7').innerHTML=SER7.map(s=>`<div><b class="num-tab">${s.items.length}</b><span>งานรำลึก ${esc(s.name)} (${s.items[0][0]}–${s.items[s.items.length-1][0]})</span></div>`).join('');
+
+/* ---------- bar chart helper ---------- */
+function barChart(svg,data,max,ticks,onPick){const W=560,H=330,ml=40,mr=8,mt=26,mb=30,iw=W-ml-mr,ih=H-mt-mb;svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  const y=v=>mt+ih-ih*v/max;const bw=iw/data.length;
+  ticks.forEach(t=>{S('line',{x1:ml,x2:W-mr,y1:y(t),y2:y(t),class:'grid'},svg);T(svg,ml-8,y(t)+4,t,{class:'axis','text-anchor':'end'});});
+  const items=data.map((d,k)=>{const g=S('g',{class:'bar'+(d.star?' star':''),tabindex:0,role:'button','aria-label':`${d.label}: ${d.v}`},svg);const w=bw*.66,x=ml+k*bw+(bw-w)/2;
+    S('rect',{x,y:y(d.v),width:w,height:mt+ih-y(d.v),rx:4},g);T(g,x+w/2,y(d.v)-7,d.v,{class:'val','text-anchor':'middle'});T(g,x+w/2,H-9,d.label,{class:'axis','text-anchor':'middle'});
+    if(onPick){g.addEventListener('click',()=>onPick(k));g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();onPick(k);}});}return g;});
+  S('line',{x1:ml,x2:W-mr,y1:mt+ih,y2:mt+ih,stroke:'#8e8379'},svg);
+  return hl=>items.forEach((g,k)=>g.classList.toggle('hl',hl.includes(k)));}
+
+/* ---------- CH8 ---------- */
+const D8=[
+ {y:2561,h:'คำถามต่อรัฐธรรมนูญ 2560 และความเหลื่อมล้ำ',items:['เสวนานายกรัฐมนตรีคนนอกตามรัฐธรรมนูญ 2560','Thammasat Resolution Talk เรื่องความเหลื่อมล้ำ','Thammasat Resolution Talk เรื่องการกระจายอำนาจ / ปฏิรูประบบราชการ']},
+ {y:2562,h:'คอร์รัปชัน และปัญหาฝุ่นในมิติการเมือง',items:['เสวนาเรื่องคอร์รัปชัน','Social Science Forum เรื่องฝุ่นในมิติทางสังคม การเมือง และเศรษฐกิจ']},
+ {y:2563,h:'ปีแห่งการชุมนุมของนักศึกษา',items:['"รวมพลังธรรมศาสตร์ ทวงคืนอนาคต"','"ธรรมศาสตร์จะไม่ทน"','เสวนา "ถ้าการเมืองดี… นักเรียนนักศึกษาจะรักชาติกันอย่างไร"','PRIDI Talks #6 เรื่องชาติ ความเป็นไทย และประชาธิปไตย']},
+ {y:2564,h:'ตุลาการ และหลักเอกราช',items:['เสวนาเรื่องบทบาทตุลาการกับประชาธิปไตย','PRIDI Talks #12 เรื่องหลักเอกราชกับการต่างประเทศ (จัดออนไลน์)']},
+ {y:2565,h:'PRIDI Talks กลายเป็นเวทีประจำ',items:['PRIDI Talks #15 เรื่อง SDGs กับประชาธิปไตย','PRIDI Talks #16 ครบรอบ 90 ปี 2475','PRIDI Talks #17 เรื่องสันติภาพโลก','เวทีอภิปรายในวาระ 6 ตุลาคม','PRIDI Talks #18 เรื่องรัฐธรรมนูญฉบับประชาชน']},
+ {y:2566,h:'ปีเลือกตั้ง 2566',items:['เวทีอ่านเกมเลือกตั้ง 2566','PRIDI Talks เรื่องประชาธิปไตยและอำนาจประชาชน','เสวนา "การเมืองเรื่องของทุกคน"','เวที 91 ปีอภิวัฒน์สยาม','Media Forum เรื่องสิทธิการสื่อสาร','เสวนาร่างรัฐธรรมนูญใหม่']},
+ {y:2567,h:'ประเด็นกว้างที่สุด: จากเสื้อแดงถึงการเลือกตั้งสหรัฐฯ',items:['เสวนาเรื่องประวัติศาสตร์คนเสื้อแดง','เสวนาเรื่องกระบวนการยุติธรรม','PRIDI Talks เรื่อง ส.ว. กับประชาธิปไตย','เสวนาความเป็นเอกภาพของขบวนการประชาธิปไตย','เสวนาสันติภาพชายแดนใต้','เวทีเสวนาเหตุการณ์ 6 ตุลา','เสวนาเลือกตั้งสหรัฐฯ','เวทีร่างรัฐธรรมนูญฉบับประชาชน']},
+ {y:2568,h:'ความรุนแรง วาระ 49 ปี 6 ตุลา และวันรัฐธรรมนูญ',items:['PRIDI Talks เรื่องประชาธิปไตยกับความรุนแรง','เสวนา "คณาธิปไตยไทย–สหรัฐฯ"','เวที 24 มิถุนายน','งานวันสันติภาพไทย','กิจกรรมอภิปรายในวาระ 49 ปี 6 ตุลา','สัปดาห์ประชาสังคมนานาชาติ','เวทีวันรัฐธรรมนูญ']},
+ {y:2569,star:1,h:'ปีเลือกตั้ง: มากที่สุดในรอบ 9 ปี',items:['เวทีเลือกตั้งและประชันนโยบาย 8 กิจกรรม ตามรายงานทบทวนการเลือกตั้งของธรรมศาสตร์ (เช่น "ทุนเทากับอำนาจหลังคูหาเลือกตั้ง")','เวทีรัฐธรรมนูญใหม่','"วิ่งเพื่อเปลี่ยน เขียนรัฐธรรมนูญใหม่"','PRIDI Talks เรื่องปฏิรูปองค์กรอิสระ','เสวนาสิทธิความเป็นมารดาของแรงงานหญิง'],n:12}];
+const n8=d=>d.n||d.items.length;
+const total8=D8.reduce((a,d)=>a+n8(d),0);
+let html8=`<div class="step" data-hl="${D8.map((_,k)=>k).join(',')}"><div class="card"><div class="tag"><span class="n">8.1</span>ภาพรวม 9 ปี</div><h3>อย่างน้อย ${total8} กิจกรรม จาก 3 งานสู่ 12 งานต่อปี</h3><p>เลื่อนลงเพื่อดูรายละเอียดของแต่ละปี หรือแตะแท่งในกราฟเพื่อข้ามไปปีนั้น</p><p class="note">รวบรวมจากหลักฐานสาธารณะที่ค้นพบ ไม่ใช่สถิติรวมอย่างเป็นทางการของมหาวิทยาลัย</p></div></div>`;
+D8.forEach((d,k)=>{html8+=`<div class="step" data-hl="${k}" data-y="${d.y}"><div class="card"><div class="tag"><span class="n">${d.y}${d.star?'*':''}</span>${n8(d)} งาน</div><h3>${esc(d.h)}</h3><ul class="items">${d.items.map((t,i)=>`<li><b>${i+1}</b><span><strong>${esc(t)}</strong></span></li>`).join('')}</ul>${d.star?'<p class="note">* ข้อมูลถึงวันที่ 24 ตุลาคม 2569 ไม่ใช่ยอดสิ้นปี · 8 เวทีเลือกตั้ง + 4 กิจกรรมอื่น = 12</p>':''}</div></div>`;});
+$('#steps8').innerHTML=html8;
+const hl8=barChart($('#bars8'),D8.map(d=>({label:d.y+(d.star?'*':''),v:n8(d),star:d.star})),14,[0,4,8,12],k=>{const st=$(`#steps8 .step[data-y="${D8[k].y}"]`);if(st)st.scrollIntoView({behavior:'smooth',block:'center'});});
+reg('ch8',(i,ds)=>hl8(ds.hl.split(',').map(Number)));
+
+/* ---------- CH9 ---------- */
+const D9=[
+ {y:2562,items:[['27 มี.ค.','อมธ. เรียกร้องให้ตรวจสอบการทำงานของ กกต.','ออกแถลงการณ์หลังพบข้อสงสัยเกี่ยวกับผลคะแนนและความล่าช้าในการนับคะแนน · Thai PBS'],['29 มี.ค.','นักศึกษาร่วมรณรงค์ถอดถอน กกต.','นักศึกษาหลายมหาวิทยาลัยตั้งโต๊ะรวบรวมรายชื่อ ตั้งคำถามเรื่องความโปร่งใสของการเลือกตั้ง · Thai PBS']]},
+ {y:2563,items:[['26 ก.พ.','"รวมพลังธรรมศาสตร์ ทวงคืนอนาคต"','กิจกรรมที่ศูนย์รังสิต แสดงจุดยืนทางการเมืองและเรียกร้องให้ประชาชนมีส่วนร่วมมากขึ้น · Thai PBS'],['10 ส.ค.','"ธรรมศาสตร์จะไม่ทน"','ข้อเรียกร้องให้ยุบสภา แก้รัฐธรรมนูญ หยุดคุกคามประชาชน และข้อเสนอปฏิรูปสถาบันกษัตริย์ · พิพิธภัณฑ์สามัญชน'],['12 ส.ค.','อมธ. ปกป้องสิทธิในการแสดงความคิดเห็น','ยืนยันว่าการปราศรัยต้องพิจารณาภายใต้หลักรัฐธรรมนูญและสิทธิเสรีภาพ · Thai PBS'],['19 ก.ย.','"19 กันยา ทวงอำนาจคืนราษฎร"','การชุมนุมใหญ่ ผลักดันข้อเรียกร้องเรื่องรัฐธรรมนูญและโครงสร้างอำนาจ · Thai PBS'],['20 ก.ย.','ยื่นหนังสือเรียกร้องการปฏิรูปสถาบันกษัตริย์','ขบวนถูกตำรวจสกัด จึงส่งหนังสือผ่านผู้บัญชาการตำรวจนครบาลแทน · BBC News ไทย'],['12 ต.ค.','อมธ. เรียกร้องให้หยุดเรียน 3 วัน','ขอหยุดเรียน 14–16 ต.ค. เพื่อให้นักศึกษาร่วมชุมนุมและแสดงออก · Thai PBS'],['15 ต.ค.','สภานักศึกษา 3 มหาวิทยาลัยเรียกร้องสันติวิธี','จุฬาฯ ธรรมศาสตร์ มหิดล ขอให้รัฐใช้กฎหมายอย่างเป็นธรรมและปล่อยตัวแกนนำชั่วคราว · Thai PBS'],['20 ต.ค.','นศ. ศูนย์ลำปาง เรียกร้องคุ้มครองเสรีภาพการชุมนุม','ตอบโต้แถลงการณ์มหาวิทยาลัยที่ว่าการชุมนุมไม่เหมาะสม · iLaw'],['31 ต.ค.','อมธ. เรียกร้อง 6 ข้อเรื่องข้อมูลส่วนบุคคลของบัณฑิต','ให้ผู้บริหารชี้แจงการเก็บและส่งต่อข้อมูลส่วนบุคคลของนักศึกษาและบัณฑิต · ไทยรัฐ']]},
+ {y:2564,items:[['16 ก.พ.','เรียกร้องกระบวนการยุติธรรมที่เป็นกลาง','อ่านจดหมายเปิดผนึกถึง 5 หน่วยงาน ขอให้พิจารณาคดีอย่างเป็นกลางและคำนึงถึงสิทธิประกันตัว · Thai PBS'],['20 ก.พ.','"อภิปรายไม่ไว้วางใจนอกสภา"','กิจกรรมบริเวณรัฐสภา ย้ำข้อเรียกร้องให้นายกรัฐมนตรีลาออก · Thai PBS'],['18 ก.ค.','อมธ. ประณามการใช้ความรุนแรงสลายการชุมนุม','ประณามการใช้รถฉีดน้ำ แก๊สน้ำตา กระสุนยาง เรียกร้องให้ใช้สันติวิธี · กรุงเทพธุรกิจ'],['18 ก.ค.','กลุ่มชุมนุมและชมรมธรรมศาสตร์ออกแถลงการณ์ร่วม','สนับสนุนสิทธิการชุมนุมโดยสงบ แยกจากฉบับของ อมธ. · Sanook'],['10 ส.ค.','แนวร่วมธรรมศาสตร์ฯ ประกาศ 5 ข้อเรียกร้อง','เรื่องการจัดการโควิด-19 เศรษฐกิจ ยกเลิกรัฐธรรมนูญ 2560 และปฏิรูปโครงสร้างอำนาจ · Thai PBS'],['27 ก.ย.','ข้อถกเถียงเรื่องการจัดงานรำลึก 6 ตุลา','สภานักศึกษาขอให้อนุญาตจัดงาน ขณะที่ อมธ. ยังไม่ร่วมลงนามในตอนแรก · ไทยรัฐ'],['28 ก.ย.','อมธ. ออกแถลงการณ์ชี้แจงเพิ่มเติม','ยืนยันว่าพร้อมสนับสนุนงานรำลึก หากผู้จัดมีมาตรการที่รัดกุม · ไทยรัฐ'],['6 ต.ค.','งานรำลึก 45 ปี 6 ตุลา †','เรียกร้องให้ดำเนินคดีผู้ก่อเหตุ และพูดถึงกระบวนการยุติธรรมระหว่างประเทศ · The Active']]},
+ {y:2565,items:[['10 ส.ค.','"10 สิงหา ประชาธิปไตยต้องไปต่อ"','กิจกรรมที่ศูนย์รังสิต เรียกร้องให้นายกรัฐมนตรีและ ครม. ลาออก · มติชนสุดสัปดาห์'],['22 ส.ค.','ร่วมฟ้องเพิกถอนข้อกำหนดตาม พ.ร.ก.ฉุกเฉินฯ','นายก อมธ. และประธานสภานักศึกษาร่วมเป็นโจทก์ ขอเพิกถอนข้อกำหนดที่จำกัดการชุมนุม · iLaw'],['ก.ย.','ข้อเรียกร้องล้างหนี้ กยศ. และเรียนฟรี †','เครือข่าย CanFree ผลักดันสิทธิในการศึกษาและรัฐสวัสดิการ · Thai PBS Decode']]},
+ {y:2566,items:[['27 ม.ค.','สนับสนุน 3 ข้อเรียกร้องของตะวัน–แบม','สภานักศึกษาและ อมธ. หนุนเรื่องสิทธิประกันตัวและการปฏิบัติต่อผู้ถูกดำเนินคดีการเมือง · มติชน'],['15 พ.ค.','24 คณะ/หลักสูตรเรียกร้องให้เคารพเสียงประชาชน','เรียกร้องให้พรรคการเมืองและวุฒิสภาเคารพผลการเลือกตั้ง · มติชน'],['17 ก.ค.','40 องค์กรเรียกร้องให้รัฐสภาเคารพฉันทามติ','องค์กรนักศึกษา 29 คณะร่วมกับภาคประชาชน เรื่องการเลือกนายกรัฐมนตรี · ThaiPublica'],['26 ก.ค.','"THE RETURN OF THAMMASAT"','กิจกรรมที่ศูนย์รังสิต เรียกร้องให้ ส.ว. เคารพเสียงข้างมาก · ไทยรัฐ']]},
+ {y:2567,items:[['15 พ.ค.','45 องค์กรนักศึกษาประณามความล้มเหลวของกระบวนการยุติธรรม','หลังการเสียชีวิตของ "บุ้ง ทะลุวัง" เรียกร้องความรับผิดชอบต่อสิทธิผู้ถูกดำเนินคดี · ไทยรัฐ'],['12 ก.ย.','เรียกร้องนิรโทษกรรมคดีการเมือง','ร่วมกับ 9 องค์กร ยื่นจดหมายถึงนายกฯ ขอนิรโทษกรรมตั้งแต่ปี 2549 รวมคดีมาตรา 112 · Thai PBS'],['19 พ.ย.','เรียกร้องนิรโทษกรรมคดีมาตรา 112','ร่วมกับ 20 องค์กร ยื่นหนังสือถึงนายกรัฐมนตรี · Thai PBS']]},
+ {y:2568,items:[['5 มี.ค.','ร้องเรียนการคุกคามนักศึกษา','กลุ่มอิสระล้อการเมืองฯ ขอให้ กมธ. ตรวจสอบกรณีเจ้าหน้าที่รัฐติดตามนักศึกษา · ศูนย์ทนายความเพื่อสิทธิมนุษยชน']]},
+ {y:2569,star:1,items:[['10 ก.พ.','เรียกร้องให้นับคะแนนเลือกตั้งใหม่ทั่วประเทศ','รวมตัวหน้าหอศิลปฯ กรุงเทพฯ เรียกร้องความโปร่งใสจาก กกต. · ไทยรัฐ'],['11 ก.พ.','ยื่น 5 ข้อเรียกร้องต่อ กกต.','นับคะแนนใหม่ เปิดข้อมูลรายหน่วย ตรวจสอบความผิดปกติ และให้ กกต. รับผิดชอบ · ประชาชาติธุรกิจ'],['15 ก.พ.','ประชามติจำลองเรื่องการถอดถอน กกต.','ร่วมกับเครือข่ายนักศึกษา 9 สถาบัน เรียกร้องให้เปิดเผยคะแนนดิบ · ไทยรัฐ'],['16 ก.พ.','ฟ้อง กกต. กรณีบัตรเลือกตั้งมีบาร์โค้ด','ตั้งคำถามว่าบัตรที่มี QR Code/Barcode ขัดหลักการลงคะแนนลับหรือไม่ · The Momentum'],['17 ก.พ.','11 มหาวิทยาลัยเรียกร้องให้ กกต. รับผิดชอบ','เครือข่ายนักศึกษาและภาคประชาชน เรื่องความโปร่งใสและบาร์โค้ดบนบัตร · ข่าวสด'],['7 ส.ค.','คัดค้านการต้อนรับผู้นำรัฐบาลทหารเมียนมา','19 องค์กรนักศึกษาจาก 3 มหาวิทยาลัย อ้างประเด็นสิทธิมนุษยชนและสันติภาพ · มติชน']]}];
+const hl9=barChart($('#bars9'),D9.map(d=>({label:d.y+(d.star?'*':''),v:d.items.length,star:d.star})),10,[0,3,6,9],null);
+const total9=D9.reduce((a,d)=>a+d.items.length,0);
+const idx9=y=>D9.findIndex(d=>d.y===y);
+const li9=d=>`<ul class="items">${d.items.map(it=>`<li><b>${esc(it[0])}</b><span><strong>${esc(it[1])}</strong><small>${esc(it[2])}</small></span></li>`).join('')}</ul>`;
+const ROLES=[['บทบาทที่ 1','เป็นกระบอกเสียงแทนนักศึกษาและปกป้องเสรีภาพในการแสดงออก','12 สิงหาคม 2563 อมธ. ออกแถลงการณ์กรณีการชุมนุม "ธรรมศาสตร์จะไม่ทน" ที่ศูนย์รังสิต ระบุว่าการปราศรัยเป็นการแสดงออกทางการเมืองที่ต้องพิจารณาตามรัฐธรรมนูญและกติการะหว่างประเทศว่าด้วยสิทธิพลเมืองและสิทธิทางการเมือง',[2563]],
+ ['บทบาทที่ 2','สนับสนุนเงื่อนไขให้ผู้เรียนมีส่วนร่วมทางการเมือง','12 ตุลาคม 2563 อมธ. เรียกร้องให้มหาวิทยาลัยหยุดเรียน 3 วัน คือ 14–16 ตุลาคม 2563 เพื่อเปิดโอกาสให้นักศึกษาเข้าร่วมการชุมนุมและแสดงออกทางการเมือง',[2563]],
+ ['บทบาทที่ 3','ตรวจสอบการใช้อำนาจและแสดงจุดยืนต่อความรุนแรงทางการเมือง','9 พฤศจิกายน 2563 อมธ. และสภานักศึกษาออกแถลงการณ์ประณามการใช้กำลังฉีดน้ำเพื่อสลายการชุมนุม โดยมองว่าเป็นการใช้ความรุนแรงเพื่อปิดกั้นการแสดงออกทางการเมืองของประชาชน',[2563]],
+ ['บทบาทที่ 4','รวมเสียงนักศึกษาจากหลายคณะเพื่อส่งข้อเรียกร้องสู่ระดับประเทศ','15 พฤษภาคม 2566 อมธ. ร่วมกับสภานักศึกษาและกรรมการนักศึกษาจาก 24 คณะ/หลักสูตร ออกแถลงการณ์เรียกร้องให้พรรคการเมืองและสมาชิกวุฒิสภาเคารพเจตนารมณ์ของประชาชนหลังการเลือกตั้ง',[2566]]];
+const YS9=[['2562','เริ่มจากคำถามต่อการเลือกตั้ง',[2562]],['2563','ปีที่มากที่สุด 9 รอบ · โครงสร้างอำนาจและสิทธิในการแสดงออก',[2563]],['2564','อีก 8 รอบ · ต่อต้านความรุนแรง เรียกร้องความยุติธรรม และรำลึก 6 ตุลา',[2564]],['2565–2566','เสียงเบาลง แต่ยังยืนยันสิทธิการชุมนุมและเจตจำนงประชาชนหลังการเลือกตั้ง',[2565,2566]],['2567–2568','ประเด็นเปลี่ยนไปสู่กระบวนการยุติธรรมและนิรโทษกรรมคดีการเมือง',[2567,2568]],['2569*','เสียงกลับมาอีกครั้ง · 5 ใน 6 รอบเป็นเรื่องการเลือกตั้งและ กกต.',[2569]]];
+let html9='';
+ROLES.forEach((r,k)=>{html9+=`<div class="step" data-hl="${r[3].map(idx9).join(',')}"><div class="card"><div class="tag"><span class="n">${k+1}</span>${r[0]}</div><h3>${esc(r[1])}</h3><p>${esc(r[2])}</p>${k===1?'<p class="quote">ตัวเลขสำหรับนำเสนอ: 3 วัน · ข้อเรียกร้องเมื่อ 12 ตุลาคม 2563</p>':''}</div></div>`;});
+html9+=`<div class="step" data-hl="${D9.map((_,k)=>k).join(',')}"><div class="card"><div class="tag"><span class="n">9.1</span>ภาพรวม 8 ปี</div><h3>ตั้งแต่ปี 2562 พบอย่างน้อย ${total9} รอบ</h3><p>นับตามการดำเนินการ ไม่ใช่ตามจำนวนประเด็นที่เรียกร้อง เลื่อนลงเพื่อดูรายละเอียดทั้งหมดของแต่ละปี</p><p class="note">† เป็นข้อเรียกร้องในกิจกรรมสาธารณะหรือของเครือข่าย ไม่ใช่แถลงการณ์ของ อมธ. โดยตรง</p></div></div>`;
+YS9.forEach(([lab,head,yrs])=>{const n=yrs.reduce((a,y)=>a+D9[idx9(y)].items.length,0);html9+=`<div class="step" data-hl="${yrs.map(idx9).join(',')}"><div class="card"><div class="tag"><span class="n">${lab}</span>${n} รอบ</div><h3>${esc(head)}</h3>${yrs.map(y=>(yrs.length>1?`<p class="date" style="margin:14px 0 0">พ.ศ. ${y} · ${D9[idx9(y)].items.length} รอบ</p>`:'')+li9(D9[idx9(y)])).join('')}${lab==='2569*'?'<p class="note">* ข้อมูลถึงวันที่ 26 ตุลาคม 2569</p>':''}</div></div>`;});
+$('#steps9').innerHTML=html9;
+reg('ch9',(i,ds)=>hl9(ds.hl.split(',').map(Number)));
+
+/* ---------- CH10 sankey ---------- */
+const FAC=[['ge','วิชาศึกษาทั่วไป'],['pol','รัฐศาสตร์'],['pbic','PBIC'],['soc','สังคมวิทยาฯ'],['law','นิติศาสตร์'],['sw','สังคมสงเคราะห์ฯ'],['sgs','SGS'],['eco','เศรษฐศาสตร์'],['jc','วารสารศาสตร์ฯ']];
+const DIM=[['1','01','พลเมืองและสังคม','#e9a5a0'],['2','02','การเมืองและอำนาจ','#d66a6c'],['3','03','สิทธิและกฎหมาย','#bb2f49'],['4','04','เศรษฐกิจและความเหลื่อมล้ำ','#6e1f2e'],['5','05','สื่อและการเคลื่อนไหวทางสังคม','#d98ba0']];
+const CRS=[
+ ['TU100','พลเมืองกับการลงมือแก้ปัญหา','ge','1'],['TU101','ไทย โลก และอาเซียน','ge','1'],['TU120','สังคมศาสตร์บูรณาการ','ge','1'],['TU122','กฎหมายในชีวิตประจำวัน','ge','1'],
+ ['ร.211','ความรู้เบื้องต้นทางรัฐศาสตร์','pol','2'],['ร.321','การเมืองการปกครองของไทย','pol','2'],['ร.322','สถาบันการเมืองและรัฐธรรมนูญ','pol','2'],['ร.408','รัฐและสังคม','pol','2'],['PB210','ปรีดี พนมยงค์ กับประวัติศาสตร์ไทยร่วมสมัย','pbic','2'],['สว.343','สังคมวิทยาการเมือง','soc','2'],['ม.324','มานุษยวิทยาการเมือง','soc','2'],
+ ['สว.352','แนวทัศน์ทางสังคมวิทยาว่าด้วยสิทธิมนุษยชน','soc','3'],['น.250','กฎหมายมหาชนเบื้องต้น','law','3'],['น.251','กฎหมายรัฐธรรมนูญ','law','3'],['น.350','กฎหมายปกครอง','law','3'],['น.360','นิติปรัชญา','law','3'],['น.361','กฎหมายสิทธิมนุษยชน','law','3'],['น.390','กฎหมายระหว่างประเทศแผนกคดีเมือง','law','3'],['สค.469','กฎหมายในงานสังคมสงเคราะห์','sw','3'],['สค.479','เสริมสร้างสิทธิมนุษยชนในงานสังคมสงเคราะห์','sw','3'],['GS221','ขบวนการสิทธิมนุษยชนโลก','sgs','3'],
+ ['GS331','ความยุติธรรมทางสังคมและการกำกับดูแลโลก','sgs','4'],['ศ.301','ประวัติศาสตร์เศรษฐกิจไทย','eco','4'],['ศ.401','เศรษฐศาสตร์การเมือง','eco','4'],['ศ.409','สัมมนาเศรษฐศาสตร์การเมืองและประวัติศาสตร์เศรษฐกิจ','eco','4'],
+ ['สม.331','ขบวนการเคลื่อนไหวทางสังคมในมิติเพศภาวะ','soc','5'],['ว.250','เสรีภาพและจริยธรรมสื่อ','jc','5'],['ว.351','การสื่อสารทางการเมือง','jc','5']];
+const sk=$('#sk');const U=19,H10=724;const dimCol=Object.fromEntries(DIM.map(d=>[d[0],d[3]]));
+T(sk,150,16,'สังกัดรายวิชา',{class:'t-sm','text-anchor':'end'});T(sk,242,16,'รายวิชา (อย่างน้อย 28 วิชา)',{class:'t-sm'});T(sk,606,16,'มิติ',{class:'t-sm'});
+// middle positions
+let cy=30;const mid=CRS.map((c,k)=>{if(k>0&&CRS[k-1][3]!==c[3])cy+=12;const y=cy;cy+=U+3;return y;});
+// left nodes
+const facN=FAC.map(f=>CRS.filter(c=>c[2]===f[0]).length);const leftTot=facN.reduce((a,b)=>a+b,0)*U+(FAC.length-1)*12;
+let ly=30+((cy-30)-leftTot)/2;const facY={};FAC.forEach((f,k)=>{facY[f[0]]=ly;ly+=facN[k]*U+12;});
+const dimN=DIM.map(d=>CRS.filter(c=>c[3]===d[0]).length);const rTot=dimN.reduce((a,b)=>a+b,0)*U+(DIM.length-1)*18;
+let ry=30+((cy-30)-rTot)/2;const dimY={};DIM.forEach((d,k)=>{dimY[d[0]]=ry;ry+=dimN[k]*U+18;});
+const band=(x0,y0,x1,y1,h)=>{const xm=(x0+x1)/2;return `M${x0},${y0} C${xm},${y0} ${xm},${y1} ${x1},${y1} L${x1},${y1+h} C${xm},${y1+h} ${xm},${y0+h} ${x0},${y0+h} Z`;};
+const gL=S('g',{},sk),gN=S('g',{},sk);const facUsed={},dimUsed={};const skEls=[];
+CRS.forEach((c,k)=>{const [code,name,f,d]=c;const y=mid[k];
+  const fy=facY[f]+(facUsed[f]=(facUsed[f]||0)+1)*U-U;const dy=dimY[d]+(dimUsed[d]=(dimUsed[d]||0)+1)*U-U;
+  const l1=S('path',{class:'lk',d:band(164,fy,240,y,U),fill:dimCol[d]},gL);const l2=S('path',{class:'lk',d:band(522,y,600,dy,U),fill:dimCol[d]},gL);
+  const bx=S('g',{class:'bx'},gN);S('rect',{x:240,y:y,width:282,height:U,rx:2},bx);const t=S('text',{x:248,y:y+13.5},bx);const ts=S('tspan',{class:'c',fill:dimCol[d]},t);ts.textContent=code+' ';const tn=S('tspan',{},t);tn.textContent=name;
+  [l1,l2,bx].forEach(e=>skEls.push({e,f,d}));});
+FAC.forEach((f,k)=>{const g=S('g',{class:'nd'},gN);const y=facY[f[0]],h=facN[k]*U;S('rect',{x:150,y,width:14,height:h},g);
+  T(g,142,y+h/2+(h>U?-1:4),f[1],{'text-anchor':'end'});if(h>U)T(g,142,y+h/2+13,facN[k]+' วิชา',{class:'s','text-anchor':'end'});else T(g,142,y+h/2+16,'1 วิชา',{class:'s','text-anchor':'end'});skEls.push({e:g,f:f[0],d:null});});
+DIM.forEach((d,k)=>{const g=S('g',{class:'dm',tabindex:0,role:'button','aria-label':'แสดงเฉพาะมิติ '+d[2]},gN);const y=dimY[d[0]],h=dimN[k]*U;S('rect',{x:600,y,width:14,height:h,fill:d[3]},g);
+  const nf=new Set(CRS.filter(c=>c[3]===d[0]).map(c=>c[2])).size;
+  T(g,622,y+h/2-14,d[1],{fill:d[3]});const t2=T(g,622,y+h/2+2,d[2],{fill:'#1f1916'});if(d[2].length>16){t2.textContent='';const a=S('tspan',{x:622},t2);a.textContent=d[2].split('และ')[0]+'และ';const b=S('tspan',{x:622,dy:15},t2);b.textContent=d[2].split('และ').slice(1).join('และ');}
+  T(g,622,y+h/2+(d[2].length>16?32:18),`${dimN[k]} วิชา · ${nf} สังกัด`,{class:'s'});
+  const go=()=>skSet({dim:new Set([d[0]])});g.addEventListener('click',go);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});skEls.push({e:g,f:null,d:d[0]});});
+function skSet(st){sk.classList.toggle('mute',st==='none');
+  skEls.forEach(({e,f,d})=>{let on=true;if(st&&st!=='none'&&st!=='all'){if(st.fac){on=f?st.fac.has(f):CRS.some(c=>c[3]===d&&st.fac.has(c[2]));}
+    if(st.dim){on=on&&(d?st.dim.has(d):CRS.some(c=>c[2]===f&&st.dim.has(c[3])));}}e.classList.toggle('off',!on);});}
+reg('ch10',(i,ds)=>{const v=ds.sk;if(v==='none'||v==='all')skSet(v);else{const [k,list]=v.split(':');skSet({[k]:new Set(list.split(','))});}});
+// curriculum map accordion
+const facName=Object.fromEntries(FAC.map(f=>[f[0],f[1]]));
+$('#cmap').innerHTML=DIM.map((d,k)=>{const cs=CRS.filter(c=>c[3]===d[0]);const nf=new Set(cs.map(c=>c[2])).size;return `<details style="--dc:${d[3]}"${k===0?' open':''}><summary><span class="no">${d[1]}</span><span><b>${esc(d[2])}</b><small>${cs.length} วิชา · ${nf} สังกัด</small></span><span class="ch" aria-hidden="true">+</span></summary><ul>${cs.map(c=>`<li><b>${esc(c[0])}</b><span>${esc(c[1])}<small>${esc(facName[c[2]])}</small></span></li>`).join('')}</ul></details>`;}).join('');
+
+onScroll();
+})();
+</script>
+</body></html>
